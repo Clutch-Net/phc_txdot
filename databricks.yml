@@ -1,0 +1,59 @@
+bundle:
+  name: phc_txdot
+
+targets:
+  dev:
+    default: true
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+
+variables:
+  catalog:
+    default: phc_txdot
+  secret_scope:
+    default: phc-txdot
+  secret_key:
+    default: txdot-app-token
+  closed_bids_url:
+    default: https://data.texas.gov/resource/de7b-7dna.json
+  page_size:
+    default: "50000"
+  sleep_seconds:
+    default: "0.5"
+  max_retries:
+    default: "5"
+  request_timeout:
+    default: "120"
+  retry_backoff:
+    default: "1.0"
+  test_mode:
+    default: "false"
+  test_max_pages:
+    default: "2"
+  closed_bids_source:
+    default: closed_bids
+  focus_vendor_name:
+    default: ""
+
+resources:
+  jobs:
+    deploy_phc_txdot:
+      name: deploy_phc_txdot
+      tasks:
+        - task_key: deploy_objects
+          notebook_task:
+            notebook_path: ./notebooks/00_admin/00_deploy_objects
+            base_parameters:
+              catalog: ${var.catalog}
+              secret_scope: ${var.secret_scope}
+              secret_key: ${var.secret_key}
+              closed_bids_url: ${var.closed_bids_url}
+              page_size: ${var.page_size}
+              sleep_seconds: ${var.sleep_seconds}
+              max_retries: ${var.max_retries}
+              request_timeout: ${var.request_timeout}
+              retry_backoff: ${var.retry_backoff}
+              test_mode: ${var.test_mode}
+              test_max_pages: ${var.test_max_pages}
+              closed_bids_source: ${var.closed_bids_source}
+              focus_vendor_name: ${var.focus_vendor_name}
