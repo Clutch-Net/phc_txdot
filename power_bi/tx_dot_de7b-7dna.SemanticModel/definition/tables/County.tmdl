@@ -1,0 +1,64 @@
+/// County dimension providing standardized geographic grouping for Texas-based projects. Used for filtering, mapping, and regional analysis across all project-level facts.
+table County
+	lineageTag: c843dc9e-15ba-4e37-bd7d-8ef2a32c7ee2
+
+	/// Surrogate integer key for the county dimension. Used for relationships only and hidden from report users.
+	column 'County Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 6aee3ba3-eadd-4feb-a5bb-4d56feddab79
+		summarizeBy: none
+		sourceColumn: County Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized Texas county name used for filtering and grouping.
+	column County
+		dataType: string
+		lineageTag: b25a8a91-7f7f-4e10-874b-b8a856a21168
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formatted geographic label combining county, state, and country for mapping and display.
+	column 'County Location'
+		dataType: string
+		lineageTag: dcf0c7d5-68a8-4832-b20e-7182846b770c
+		summarizeBy: none
+		sourceColumn: County Location
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the county exists in the official Texas county list.
+	column 'Is Official Texas County'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a6f955ea-edeb-4810-8bf3-e4da80b275d3
+		summarizeBy: none
+		sourceColumn: Is Official Texas County
+
+		annotation SummarizationSetBy = Automatic
+
+	partition County = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_county",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

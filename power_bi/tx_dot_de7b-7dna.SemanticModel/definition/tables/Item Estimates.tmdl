@@ -1,0 +1,527 @@
+/// Project-level engineer estimate item fact table containing estimate line items by project and specification. Used for engineer estimate analysis, estimate-to-bid comparison, item mix diagnostics, and estimate version review.
+table 'Item Estimates'
+	lineageTag: 78c28ea8-d71c-40b4-96a6-fd89cc4035e2
+
+	/// Technical key for the estimate item fact row. Used for row identity and hidden from report users.
+	column 'Estimate Item Fact Key'
+		dataType: string
+		isHidden
+		lineageTag: 18df7f54-d727-4188-8ea7-fad7819f3aa0
+		summarizeBy: none
+		sourceColumn: Estimate Item Fact Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Project dimension. Hidden so users filter through the Project table instead.
+	column 'Project Key'
+		dataType: string
+		isHidden
+		lineageTag: 00313e3d-3217-4e0a-a9ee-ac4950c1983b
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Item Specification dimension. Hidden so users filter through the Item Specification table instead.
+	column 'Item Specification Key'
+		dataType: string
+		isHidden
+		lineageTag: 5599855d-be01-4492-9a32-b686a2eb2450
+		summarizeBy: none
+		sourceColumn: Item Specification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Project Classification dimension. Hidden so users filter through the Project Classification table instead.
+	column 'Project Classification Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 31a56677-a953-4f36-93ca-33718872dbf4
+		summarizeBy: none
+		sourceColumn: Project Classification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the County dimension. Hidden so users filter through the County table instead.
+	column 'County Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 7fd47e9b-39fe-4217-aa43-18a26b1a52ea
+		summarizeBy: none
+		sourceColumn: County Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Specification identifier string associated with the estimate item row.
+	column Specification
+		dataType: string
+		lineageTag: c904e6f2-409b-4e9e-909b-d681fb4ead5d
+		summarizeBy: none
+		sourceColumn: Specification
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Work Category dimension. Hidden so users filter through the Work Category table instead.
+	column 'Item Work Category Key'
+		dataType: string
+		isHidden
+		lineageTag: fbe218d2-4712-4122-a25e-0e89fa2b41ad
+		summarizeBy: none
+		sourceColumn: Item Work Category Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business project identifier associated with the estimate item row.
+	column 'Project ID'
+		dataType: string
+		lineageTag: 91bae4b2-c4a1-41fa-828a-8c31794efdd3
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project name carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Name'
+		dataType: string
+		isHidden
+		lineageTag: 5f3465d4-27a9-4e2e-89e7-e4acbdea117c
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Number'
+		dataType: string
+		isHidden
+		lineageTag: b12da6c9-565f-44e3-8bb9-449788ff70b4
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'State Project Number'
+		dataType: string
+		isHidden
+		lineageTag: 1692fc39-c5d2-4e48-ae6f-3df01a1a520c
+		summarizeBy: none
+		sourceColumn: State Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Control-Section-Job identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Control Section Job CSJ'
+		dataType: string
+		isHidden
+		lineageTag: 151884d8-46f9-4be9-be11-6397b45f86c9
+		summarizeBy: none
+		sourceColumn: Control Section Job CSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Controlling project identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Controlling Project ID CCSJ'
+		dataType: string
+		isHidden
+		lineageTag: 9361fa68-3c87-41fd-9a2a-860e62d9f589
+		summarizeBy: none
+		sourceColumn: Controlling Project ID CCSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project type carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Type'
+		dataType: string
+		isHidden
+		lineageTag: 47c7f419-963e-4023-9587-b28b3299d87b
+		summarizeBy: none
+		sourceColumn: Project Type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project classification carried on the fact row for convenience. Hidden so users use the Project Classification dimension instead.
+	column 'Project Classification'
+		dataType: string
+		isHidden
+		lineageTag: 0d3c8fd2-50bb-4600-ad13-5240fae0c7cf
+		summarizeBy: none
+		sourceColumn: Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Actual Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 970f78f5-f3cc-4958-8b2d-17ddd56a4bae
+		summarizeBy: none
+		sourceColumn: Project Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Estimated let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Estimated Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 98d2beba-fd93-42ba-b7ca-744f6c58bc9e
+		summarizeBy: none
+		sourceColumn: Project Estimated Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// County label carried on the fact row for convenience. Hidden so users use the County dimension instead.
+	column County
+		dataType: string
+		isHidden
+		lineageTag: b02938da-be59-484e-bdf3-13cb20eebf73
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formatted location label carried on the fact row for convenience. Hidden so users use the Project and County dimensions instead.
+	column Location
+		dataType: string
+		isHidden
+		lineageTag: cb05a53c-fcc5-4e51-b82c-38b359af12c8
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	/// District or division carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'District Division'
+		dataType: string
+		isHidden
+		lineageTag: 4c60a837-0db2-4f63-9bd7-1e8884c92e89
+		summarizeBy: none
+		sourceColumn: District Division
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Highway carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column Highway
+		dataType: string
+		isHidden
+		lineageTag: dbb17324-abb0-4fad-a54b-2656861cc698
+		summarizeBy: none
+		sourceColumn: Highway
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short project description carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Short Description'
+		dataType: string
+		isHidden
+		lineageTag: 469d5054-8e3b-48e6-aefb-a5972a433de1
+		summarizeBy: none
+		sourceColumn: Short Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bid code associated with the estimate item row.
+	column 'Bid Code'
+		dataType: string
+		lineageTag: 0a32421c-1e11-4d99-a633-7db7793d309b
+		summarizeBy: none
+		sourceColumn: Bid Code
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Alternative bid code associated with the estimate item row when applicable.
+	column 'Alternative Bid Code'
+		dataType: string
+		lineageTag: 832e3e21-f132-4871-b636-cbf27e030f9b
+		summarizeBy: none
+		sourceColumn: Alternative Bid Code
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bid item sequence number identifying the item within the project estimate.
+	column 'Bid Item Sequence Number'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 88adf029-87ca-43a3-8786-55964907249d
+		summarizeBy: sum
+		sourceColumn: Bid Item Sequence Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bid item description associated with the engineer estimate row.
+	column 'Bid Item Description'
+		dataType: string
+		lineageTag: 294edcb2-b19f-4f1a-a242-ad390be90663
+		summarizeBy: none
+		sourceColumn: Bid Item Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Measurement unit associated with the estimate item row.
+	column 'Measurement Unit'
+		dataType: string
+		lineageTag: 2d7bc7f6-9a7a-4afe-9ac0-02ee4504bebb
+		summarizeBy: none
+		sourceColumn: Measurement Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Quantity associated with the estimate item row.
+	column 'Bid Item Quantity'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: cb7b9808-24a5-4d83-a0aa-feb6f5b95ecf
+		summarizeBy: sum
+		sourceColumn: Bid Item Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Specification code associated with the estimate item. Treated as a business code rather than an aggregating metric.
+	column 'Specification Code'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: c5260337-a35e-4017-af41-39e7ca18af83
+		summarizeBy: none
+		sourceColumn: Specification Code
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Original specification description associated with the estimate item.
+	column 'Specification Description'
+		dataType: string
+		lineageTag: 975b0f00-234c-423d-b5d1-e451ec3ea661
+		summarizeBy: none
+		sourceColumn: Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Normalized specification description used as the effective reporting description for the estimate item.
+	column 'Effective Specification Description'
+		dataType: string
+		lineageTag: 3fc61060-bab0-4730-a8ca-def38543affb
+		summarizeBy: none
+		sourceColumn: Effective Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized work category assigned to the estimate item. Hidden so users use the Work Category dimension instead.
+	column 'Item Work Category'
+		dataType: string
+		isHidden
+		lineageTag: 9e59ce30-4cb0-4b7b-a8b9-02960aa1de0a
+		summarizeBy: none
+		sourceColumn: Item Work Category
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Source or derivation method used to assign the estimate item to a work category.
+	column 'Item Work Category Source'
+		dataType: string
+		lineageTag: 25c59d0a-a511-49ad-ab89-62bca7f00737
+		summarizeBy: none
+		sourceColumn: Item Work Category Source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the work category assignment was defaulted rather than directly mapped.
+	column 'Is Defaulted Work Category'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 658625f1-0890-47d6-beab-ffffecfa3687
+		summarizeBy: none
+		sourceColumn: Is Defaulted Work Category
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Engineer estimate unit price for the item.
+	column 'Engineer Estimate Unit Price'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 5e758226-d0c8-46c9-ba6c-a7bdadc82d95
+		summarizeBy: sum
+		sourceColumn: Engineer Estimate Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Calculated extended engineer estimate amount for the item.
+	column 'Extended Estimate Item Amount Calc'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: e2967708-3e92-4638-b472-2d607d71bb29
+		summarizeBy: sum
+		sourceColumn: Extended Estimate Item Amount Calc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Project-level total engineer estimate amount associated with the item row.
+	column 'Project Engineer Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 4da7cee8-2320-485c-8243-0cedd45ad02f
+		summarizeBy: sum
+		sourceColumn: Project Engineer Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Source used to derive the project engineer total value.
+	column 'Engineer Project Total Source'
+		dataType: string
+		lineageTag: 52b82231-8d77-4599-900c-3ec458bf2b2e
+		summarizeBy: none
+		sourceColumn: Engineer Project Total Source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Estimate item extended amount as a percentage of the total project engineer estimate.
+	column 'Estimate Item Amount As Pct Of Project Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 956431a3-0a28-4493-b65c-36597f7c2068
+		summarizeBy: sum
+		sourceColumn: Estimate Item Amount As Pct Of Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Diagnostic percentage used to validate estimate item rollup behavior against project totals.
+	column 'Estimate Item Amount As Pct Of Item Rollup Diagnostic'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 682a8cfa-bc56-4d9e-836f-6754338b2b1a
+		summarizeBy: sum
+		sourceColumn: Estimate Item Amount As Pct Of Item Rollup Diagnostic
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Rank of the estimate item within the project based on estimate amount or defined estimate ordering logic.
+	column 'Estimate Item Rank'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 2c073bb3-0916-49b7-b0dd-2da06da181b1
+		summarizeBy: sum
+		sourceColumn: Estimate Item Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of estimate versions observed for the item within the project.
+	column 'Estimate Item Version Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: c44fd0ec-2c8a-4bd2-b163-146490d31814
+		summarizeBy: sum
+		sourceColumn: Estimate Item Version Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the estimate item has multiple retained versions.
+	column 'Estimate Item Has Multiple Versions'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5a625633-7381-49ac-9a52-96bb6b3b4b43
+		summarizeBy: none
+		sourceColumn: Estimate Item Has Multiple Versions
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the estimate item changed across estimate versions.
+	column 'Estimate Item Changed Across Versions'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6bfea7cb-6a40-4891-ac13-c8dfddaf75ab
+		summarizeBy: none
+		sourceColumn: Estimate Item Changed Across Versions
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the estimate item is classified as nonstandard.
+	column 'Is Nonstandard Estimate Item'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3c1fee78-20f3-473a-8c02-abdc211d4891
+		summarizeBy: none
+		sourceColumn: Is Nonstandard Estimate Item
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the estimate item is considered valid for standard estimate-versus-bid comparison.
+	column 'Is Standard Comparison Item'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e7d3f332-4d4b-4b40-a013-25f91f037942
+		summarizeBy: none
+		sourceColumn: Is Standard Comparison Item
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the item is a payment adjustment item.
+	column 'Is Payment Adjustment Item'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c240f930-1581-4cda-99c0-790888f75e28
+		summarizeBy: none
+		sourceColumn: Is Payment Adjustment Item
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the item is a special deduction item.
+	column 'Is Special Deduction Item'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 46c5978a-0a68-44c0-bac0-a754a9584ff0
+		summarizeBy: none
+		sourceColumn: Is Special Deduction Item
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the item is a nonstandard adjustment item.
+	column 'Is Nonstandard Adjustment Item'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c5586e0e-1415-4cd2-8362-53e3a3855939
+		summarizeBy: none
+		sourceColumn: Is Nonstandard Adjustment Item
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Item Estimates' = m
+		mode: import
+		source =
+				let
+				    View = "vw_fact_project_item_estimate",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

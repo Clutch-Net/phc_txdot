@@ -1,0 +1,410 @@
+/// Conformed project dimension used as the primary hub for project-level filtering, slicing, and descriptive reporting across all project-grain facts.
+table Project
+	lineageTag: af602d38-6f97-4986-bcc1-138cee8c4582
+
+	/// Technical key for the project dimension. Used for relationships only and hidden from report users.
+	column 'Project Key'
+		dataType: string
+		isHidden
+		lineageTag: 84830bba-8222-4074-accb-34a7667e3353
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Primary business identifier for the project used across the source data and reporting.
+	column 'Project ID'
+		dataType: string
+		lineageTag: 346d6356-3643-4600-b177-e7d917b3afb0
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the project to the project classification dimension. Hidden so users filter through the Project Classification table instead.
+	column 'Project Classification Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 6df71cac-2bdc-430c-864f-1f5c6e47c559
+		summarizeBy: none
+		sourceColumn: Project Classification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the project to the county dimension. Hidden so users filter through the County table instead.
+	column 'County Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 7276121a-976b-43c5-8b42-8c43d3f6d35e
+		summarizeBy: none
+		sourceColumn: County Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project name or title used for business reporting and identification.
+	column 'Project Name'
+		dataType: string
+		lineageTag: 31bfe38b-d9ac-46ac-91f4-728ead1c780d
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project number used to identify the project in source systems and reports.
+	column 'Project Number'
+		dataType: string
+		lineageTag: 6ffe9cbb-ea01-4f26-9110-42a7249aa56e
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State-assigned project number associated with the project.
+	column 'State Project Number'
+		dataType: string
+		lineageTag: c8af6e25-f0a1-441f-95f3-166be49d6190
+		summarizeBy: none
+		sourceColumn: State Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Control-Section-Job identifier associated with the project.
+	column 'Control Section Job CSJ'
+		dataType: string
+		lineageTag: 63a211cb-f33e-4fd8-89a5-3283c4fe3292
+		summarizeBy: none
+		sourceColumn: Control Section Job CSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Controlling project identifier used to group related project records under a common controlling project.
+	column 'Controlling Project ID CCSJ'
+		dataType: string
+		lineageTag: 76dcf022-db2f-4699-bb64-f0cc088c66f7
+		summarizeBy: none
+		sourceColumn: Controlling Project ID CCSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project type describing the general nature of the project.
+	column 'Project Type'
+		dataType: string
+		lineageTag: a84d27ac-d27e-4393-878d-1397f5002ace
+		summarizeBy: none
+		sourceColumn: Project Type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized business classification for the project. Kept visible for descriptive display, while filtering should generally use the Project Classification dimension.
+	column 'Project Classification'
+		dataType: string
+		lineageTag: ccf73867-d8f4-48bb-b1f1-9bfea6e5ff3b
+		summarizeBy: none
+		sourceColumn: Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual project let date used as the primary active reporting date for the project.
+	column 'Project Actual Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 608e5ba5-6b4d-49db-a685-97814f9b6d7c
+		summarizeBy: none
+		sourceColumn: Project Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Estimated project let date used for planned letting analysis and alternate date-based reporting.
+	column 'Project Estimated Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b2e0078a-07a3-4ee9-bf43-cd7331db09b1
+		summarizeBy: none
+		sourceColumn: Project Estimated Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Text description of the starting project limits.
+	column 'Project Limits From'
+		dataType: string
+		lineageTag: febac334-c358-474c-bb50-a50508d21ebb
+		summarizeBy: none
+		sourceColumn: Project Limits From
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Text description of the ending project limits.
+	column 'Project Limits To'
+		dataType: string
+		lineageTag: a082ed9c-2fc8-44a1-8974-06d8c54cfcfa
+		summarizeBy: none
+		sourceColumn: Project Limits To
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized county name associated with the project. Kept visible for display, while filtering should generally use the County dimension.
+	column County
+		dataType: string
+		lineageTag: 1effa393-0d43-41a3-a04c-b67905135221
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formatted location label for the project, typically combining county, state, and country for geographic display.
+	column Location
+		dataType: string
+		lineageTag: 6fea8338-501b-4fb7-9dc0-3d79ff392c7f
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	/// District or division responsible for the project.
+	column 'District Division'
+		dataType: string
+		lineageTag: 10c92595-8b3d-4b95-ae2b-a10b18f9d339
+		summarizeBy: none
+		sourceColumn: District Division
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Highway or route associated with the project.
+	column Highway
+		dataType: string
+		lineageTag: 577aa8c0-65c7-4ab6-9201-d7efcd3a3b8f
+		summarizeBy: none
+		sourceColumn: Highway
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short descriptive summary of the project.
+	column 'Short Description'
+		dataType: string
+		lineageTag: c0f62198-f5a0-4524-83c5-36f5f26787d7
+		summarizeBy: none
+		sourceColumn: Short Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Federal project number associated with the project when applicable.
+	column 'Federal Project Number'
+		dataType: string
+		lineageTag: 405121eb-2e2d-414e-b64d-d92ea8015f6a
+		summarizeBy: none
+		sourceColumn: Federal Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Vendor Count Including Estimate'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: acce88b3-28cd-4d7b-8fd4-8496cdb303f3
+		summarizeBy: sum
+		sourceColumn: Vendor Count Including Estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Vendor Count Excluding Estimate'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 27a3dac2-3de1-41a3-858c-61958b20bbcf
+		summarizeBy: sum
+		sourceColumn: Vendor Count Excluding Estimate
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Vendor Submission Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 2e684768-caeb-4e1c-adf3-f67b03994917
+		summarizeBy: sum
+		sourceColumn: Vendor Submission Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Distinct Vendor Item Sequence Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 785b3d72-12fe-426b-be9a-6761b07c1a44
+		summarizeBy: sum
+		sourceColumn: Distinct Vendor Item Sequence Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Vendor Latest Item Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: b00ea9d9-6b4f-4ad9-8586-3706f6c45d44
+		summarizeBy: sum
+		sourceColumn: Vendor Latest Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Vendor Latest Vendor Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 6bf4dc1c-2649-4b98-96f8-b3010d89d9a3
+		summarizeBy: sum
+		sourceColumn: Vendor Latest Vendor Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Estimate Current Item Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: f1be364e-5973-434d-9541-d4827d943d7b
+		summarizeBy: sum
+		sourceColumn: Estimate Current Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Min Engineer Project Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 75ea0959-87b6-4a95-80d7-e75679cbad50
+		summarizeBy: sum
+		sourceColumn: Min Engineer Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Model column in table Project.
+	column 'Max Engineer Project Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: c8075d9b-6130-4bf3-acd7-31b59759e406
+		summarizeBy: sum
+		sourceColumn: Max Engineer Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Model column in table Project.
+	column 'Has Engineer Estimate Rows'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 479cf256-fcaf-4a30-8027-2d2101fcd6c3
+		summarizeBy: none
+		sourceColumn: Has Engineer Estimate Rows
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Has Conflicting Engineer Project Totals'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1db08c3c-b1c2-47d1-bc9c-bbdc76efc82a
+		summarizeBy: none
+		sourceColumn: Has Conflicting Engineer Project Totals
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Actual Let Year'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 733c248e-f93d-4f47-afbd-0e7be1f4085f
+		summarizeBy: sum
+		sourceColumn: Actual Let Year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Actual Let Month'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 4e8c5b5c-1f40-467f-975f-9e5645849d94
+		summarizeBy: sum
+		sourceColumn: Actual Let Month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Estimated Let Year'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: f55ba164-9412-44e5-9fbe-2fcc89ffa363
+		summarizeBy: sum
+		sourceColumn: Estimated Let Year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Estimated Let Month'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 1edd9f7d-d9a2-4daa-9eb7-590458e9320e
+		summarizeBy: sum
+		sourceColumn: Estimated Let Month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Estimated To Actual Let Day Diff'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: e01b133a-5822-4e1c-bea2-a5610d0b9625
+		summarizeBy: sum
+		sourceColumn: Estimated To Actual Let Day Diff
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Latest Source Updated At'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 8927e5c7-b42d-4d56-92fd-aab40448f608
+		summarizeBy: none
+		sourceColumn: Latest Source Updated At
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Project.
+	column 'Latest Load Timestamp'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2ef164d9-9bcc-49dc-b190-d95bb5326f98
+		summarizeBy: none
+		sourceColumn: Latest Load Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Project = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_project",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

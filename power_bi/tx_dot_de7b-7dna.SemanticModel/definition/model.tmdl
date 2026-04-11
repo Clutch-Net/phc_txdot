@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	maxParallelismPerRefresh: 1
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Host","Path","Catalog","Database","LimitData","_Measures","Project","Vendor","Project Classification","County","Project Bids","Project Bid Items","Item Estimates","Item Comparison","Item Specification","Work Category","Calendar","Project Scope Mix","Project Bid Role Comparison"]
+
+annotation __TEdtr = 1
+
+ref table Project
+ref table _Measures
+ref table Vendor
+ref table 'Project Classification'
+ref table County
+ref table 'Project Bids'
+ref table 'Project Bid Items'
+ref table 'Item Estimates'
+ref table 'Item Comparison'
+ref table 'Item Specification'
+ref table 'Work Category'
+ref table Calendar
+ref table 'Project Scope Mix'
+ref table 'Project Bid Role Comparison'
+
+ref cultureInfo en-US
+

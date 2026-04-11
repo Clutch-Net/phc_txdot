@@ -1,0 +1,152 @@
+/// Conformed item specification dimension used to standardize specification-level grouping, labeling, and drillthrough across bid item, estimate item, and item comparison reporting.
+table 'Item Specification'
+	lineageTag: 1d7ce185-a502-483a-993c-678b82016b98
+
+	/// Technical key for the item specification dimension. Used for model relationships only and hidden from report users.
+	column 'Item Specification Key'
+		dataType: string
+		isHidden
+		lineageTag: 3ddbff0a-85c2-4f4f-b578-691547f52a2f
+		summarizeBy: none
+		sourceColumn: Item Specification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Specification code associated with the item specification. Treated as a business code rather than an aggregating metric.
+	column 'Specification Code'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 206fa0ab-0ff7-409c-8494-0bab3834da40
+		summarizeBy: none
+		sourceColumn: Specification Code
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Original specification description associated with the item specification record.
+	column 'Specification Description'
+		dataType: string
+		lineageTag: 7298a21a-229c-4264-9cd8-bdd8207ea4ef
+		summarizeBy: none
+		sourceColumn: Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Normalized specification description used as the effective reporting description for the item specification.
+	column 'Effective Specification Description'
+		dataType: string
+		lineageTag: 7dbcc0db-9bab-41e8-a839-d9532b8d8e4b
+		summarizeBy: none
+		sourceColumn: Effective Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Default or most representative unit of measure associated with the specification.
+	column 'Measurement Unit'
+		dataType: string
+		lineageTag: fbf09f20-d0cb-474a-a670-12bd74c67d5a
+		summarizeBy: none
+		sourceColumn: Measurement Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Default bid code associated with the specification when a primary bid code is identified.
+	column 'Default Bid Code'
+		dataType: string
+		lineageTag: 346a1b8b-a07d-48c5-9a05-7e038e3c5111
+		summarizeBy: none
+		sourceColumn: Default Bid Code
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Default bid item description associated with the specification when a primary description is identified.
+	column 'Default Bid Item Description'
+		dataType: string
+		lineageTag: 19f3a14a-c073-4118-9158-0f4dd62c8f57
+		summarizeBy: none
+		sourceColumn: Default Bid Item Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Default specification book year associated with the item specification.
+	column 'Default Spec Book Year'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 49669b62-70d2-49da-ae5c-ea38f28f320f
+		summarizeBy: sum
+		sourceColumn: Default Spec Book Year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the specification has been associated with more than one bid code in the source history.
+	column 'Has Multiple Bid Codes'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5fd62100-9e12-4303-adba-c90971b99b78
+		summarizeBy: none
+		sourceColumn: Has Multiple Bid Codes
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the specification has been associated with more than one bid item description in the source history.
+	column 'Has Multiple Bid Item Descriptions'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a2b5781a-9ba4-40a4-8dba-0604d40673b5
+		summarizeBy: none
+		sourceColumn: Has Multiple Bid Item Descriptions
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the specification has been associated with more than one specification book year in the source history.
+	column 'Has Multiple Spec Book Years'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 117edca0-1ff4-4b01-8a44-2b5ab2586b33
+		summarizeBy: none
+		sourceColumn: Has Multiple Spec Book Years
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of vendor-project combinations in which this item specification appears.
+	column 'Vendor Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: f53a97c9-e37c-4d84-b74e-14b6a0fde1e1
+		summarizeBy: sum
+		sourceColumn: Vendor Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of estimate-side projects in which this item specification appears.
+	column 'Estimate Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 01b0aa66-5d36-4650-9a5c-5f03c9877403
+		summarizeBy: sum
+		sourceColumn: Estimate Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Item Specification' = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_item_specification",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

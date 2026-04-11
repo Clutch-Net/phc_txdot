@@ -1,0 +1,242 @@
+/// Vendor dimension providing standardized bidder identities for vendor-level analysis across bids, bid items, and comparison facts.
+table Vendor
+	lineageTag: e601ca7f-fd97-447d-b2c9-08621c33b818
+
+	/// Surrogate integer key for the vendor dimension. Used for relationships only and hidden from report users.
+	column 'Vendor Key'
+		dataType: string
+		isHidden
+		formatString: 0;(0)
+		lineageTag: e24967ed-4ca3-4d99-9996-41a0f43680ea
+		summarizeBy: none
+		sourceColumn: Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Original vendor name as presented in the source data.
+	column 'Vendor Name'
+		dataType: string
+		lineageTag: ad1ba7f9-c336-47f8-aa97-ec06922b6594
+		summarizeBy: none
+		sourceColumn: Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized vendor name used to consolidate naming variations for reporting and analysis.
+	column 'Vendor Name Standardized'
+		dataType: string
+		lineageTag: 201781eb-ec21-4095-ac9c-edbc8e2d45d8
+		summarizeBy: none
+		sourceColumn: Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 4cdae8d3-2b33-4022-a4a1-cacc1de9e3ad
+		summarizeBy: sum
+		sourceColumn: Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Submission Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 4857aac3-88b5-4bbf-9028-9b29e57efa38
+		summarizeBy: sum
+		sourceColumn: Submission Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Low Bid Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 9cfaed46-c84c-4305-acff-329978317e88
+		summarizeBy: sum
+		sourceColumn: Low Bid Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Low Bid Submission Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 8941b53b-445c-4d85-b59a-9aeef0a1dc7a
+		summarizeBy: sum
+		sourceColumn: Low Bid Submission Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Latest Item Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: a199fd9b-b2c3-4b26-8119-3cb7035ecb8a
+		summarizeBy: sum
+		sourceColumn: Latest Item Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Latest Item Row Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: ad4ec9ec-4d6a-46fb-b5aa-30b5f3e8675d
+		summarizeBy: sum
+		sourceColumn: Latest Item Row Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Latest Low Bid Project Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 763eaac4-a859-4081-ac4d-ac9bbf39120b
+		summarizeBy: sum
+		sourceColumn: Latest Low Bid Project Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'First Actual Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: a89a5cbb-86e9-41a3-90e0-e352f46fcb4b
+		summarizeBy: none
+		sourceColumn: First Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Model column in table Vendor.
+	column 'Last Actual Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 00a89681-8d0e-4d9c-a2e7-d71fc5f0cd8f
+		summarizeBy: none
+		sourceColumn: Last Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Model column in table Vendor.
+	column 'Latest First Actual Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: a18a5eea-f126-4fcb-a110-043f092efa87
+		summarizeBy: none
+		sourceColumn: Latest First Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Model column in table Vendor.
+	column 'Latest Last Actual Let Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: f1a2b1d7-ba6e-42a5-ae36-eae5e8beecaa
+		summarizeBy: none
+		sourceColumn: Latest Last Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Model column in table Vendor.
+	column 'First Actual Let Year'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 9399eccb-031b-437a-88ab-6c365f8c0015
+		summarizeBy: sum
+		sourceColumn: First Actual Let Year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Last Actual Let Year'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 145cba69-be7d-403f-877d-718706bddb1e
+		summarizeBy: sum
+		sourceColumn: Last Actual Let Year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Source Row Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: c331ab8e-141c-4e0f-8203-c3c34f783e1b
+		summarizeBy: sum
+		sourceColumn: Source Row Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Distinct Base Row Key Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: bdb02634-4c45-440a-995d-9474fce33464
+		summarizeBy: sum
+		sourceColumn: Distinct Base Row Key Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Distinct Source Row ID Count'
+		dataType: int64
+		formatString: 0;(0)
+		lineageTag: fead3d00-9a93-477c-bf28-bd1f6b91b6c6
+		summarizeBy: none
+		sourceColumn: Distinct Source Row ID Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Latest Source Updated At'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 102a2906-d26d-4cce-a6c0-73f0173cd4e6
+		summarizeBy: none
+		sourceColumn: Latest Source Updated At
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Model column in table Vendor.
+	column 'Latest Load Timestamp'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2708e51f-a810-4302-bd02-62282bd5c2b2
+		summarizeBy: none
+		sourceColumn: Latest Load Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendor = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_vendor",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

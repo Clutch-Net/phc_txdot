@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "43ed832e0b17948a5b3b",
+  "position": {
+    "x": 655.54083885209718,
+    "y": 0,
+    "z": 5000,
+    "height": 95.36423841059603,
+    "width": 130.68432671081678,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Focus Vendor Missed Opportunity Flag"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Focus Vendor Missed Opportunity Flag",
+              "nativeQueryRef": "Missed Op?",
+              "active": true,
+              "displayName": "Missed Op?"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a8e5bd8cd1cda1e15855",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Focus Vendor Missed Opportunity Flag"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,508 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "5a8c8d2b85ac997d599f",
+  "position": {
+    "x": 0,
+    "y": 105.55076923076923,
+    "z": 2000,
+    "height": 614.4,
+    "width": 1280,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project"
+                    }
+                  },
+                  "Property": "Control Section Job CSJ"
+                }
+              },
+              "queryRef": "Project.Control Section Job CSJ",
+              "nativeQueryRef": "CSJ",
+              "displayName": "CSJ"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project"
+                    }
+                  },
+                  "Property": "Project Estimated Let Date"
+                }
+              },
+              "queryRef": "Project.Project Estimated Let Date",
+              "nativeQueryRef": "Let",
+              "displayName": "Let",
+              "format": "yyyy-MMM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "County"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.County",
+              "nativeQueryRef": "County"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Winner Vendor Name"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Winner Vendor Name",
+              "nativeQueryRef": "Winner",
+              "displayName": "Winner"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Project Bid Role Comparison"
+                        }
+                      },
+                      "Property": "Winner Bid Total Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Project Bid Role Comparison.Winner Bid Total Amount)",
+              "nativeQueryRef": "1st",
+              "displayName": "1st",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Project Bid Role Comparison"
+                        }
+                      },
+                      "Property": "Winner Vs Second Amount Ratio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Project Bid Role Comparison.Winner Vs Second Amount Ratio)",
+              "nativeQueryRef": "1v2%",
+              "displayName": "1v2%",
+              "format": "0%;-0%;0%"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Project Bid Role Comparison"
+                        }
+                      },
+                      "Property": "Second Bid Total Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Project Bid Role Comparison.Second Bid Total Amount)",
+              "nativeQueryRef": "2nd",
+              "displayName": "2nd",
+              "format": "#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Second Vendor Name"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Second Vendor Name",
+              "nativeQueryRef": "Runner Up",
+              "displayName": "Runner Up"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Focus Vendor Missed Opportunity Flag"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Focus Vendor Missed Opportunity Flag",
+              "nativeQueryRef": "Missed Op?",
+              "displayName": "Missed Op?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Focus Vendor Competed Flag"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Focus Vendor Competed Flag",
+              "nativeQueryRef": "Competed?",
+              "displayName": "Competed?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Focus Vendor Won Flag"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Focus Vendor Won Flag",
+              "nativeQueryRef": "Won?",
+              "displayName": "Won?"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Project"
+                  }
+                },
+                "Property": "Project Estimated Let Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Project Bid Role Comparison.Focus Vendor Missed Opportunity Flag"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Project Bid Role Comparison.Focus Vendor Competed Flag"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Project Bid Role Comparison.Focus Vendor Won Flag"
+          }
+        },
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "93.81538461538462D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Project Bid Role Comparison.County"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "334.20170950805493D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Project Bid Role Comparison.Winner Vendor Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "296.6557682736426D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Project Bid Role Comparison.Second Vendor Name"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "04a329d95adb4f8e2210",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Project Bid Role Comparison"
+                  }
+                },
+                "Property": "Winner Bid Total Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a7cac86ac1767fcd4d53",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Winner Vendor Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "939139cc623deb72b543",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Second Vendor Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2e635396d7a7a268123d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "County"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "61158256eb4f023fa950",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Project Bid Role Comparison"
+                  }
+                },
+                "Property": "Second Bid Total Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4e02785f82800d39f7e8",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Project Bid Role Comparison"
+                  }
+                },
+                "Property": "Winner Vs Second Amount Ratio"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f8df7dae6c3956520a22",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Focus Vendor Missed Opportunity Flag"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fbd59ab6636a632bd19a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Focus Vendor Competed Flag"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "05168e98b5b466eab97f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Focus Vendor Won Flag"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6ed7b7037fe54e9fdd2b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project"
+              }
+            },
+            "Property": "Project Estimated Let Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9e9ec4b7eb0976c066da",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project"
+              }
+            },
+            "Property": "Control Section Job CSJ"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

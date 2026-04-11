@@ -1,0 +1,151 @@
+relationship 4eb130b6-652e-57c1-3957-b38be963bae4
+	fromColumn: 'Project Bids'.'Project Key'
+	toColumn: Project.'Project Key'
+
+relationship 70216bc3-48f7-892f-28e1-1117c186f034
+	fromColumn: 'Project Bid Items'.'Project Key'
+	toColumn: Project.'Project Key'
+
+relationship 2a0703b2-fb0b-81b6-2e9f-54ebae9b690a
+	fromColumn: 'Item Estimates'.'Project Key'
+	toColumn: Project.'Project Key'
+
+relationship d9d94019-cb95-f5db-d1c4-6f4a6b9ee30a
+	fromColumn: 'Item Comparison'.'Project Key'
+	toColumn: Project.'Project Key'
+
+relationship 29c5763b-6947-95ad-a7b5-473fb376f79f
+	fromColumn: 'Project Scope Mix'.'Project Key'
+	toColumn: Project.'Project Key'
+
+relationship 89756b6f-0846-5a17-5cc2-baca99a6d9b3
+	fromColumn: 'Project Bids'.'Vendor Key'
+	toColumn: Vendor.'Vendor Key'
+
+relationship a9dbe42c-14aa-6508-2150-43af826aaf5a
+	fromColumn: 'Project Bid Items'.'Vendor Key'
+	toColumn: Vendor.'Vendor Key'
+
+relationship 91319983-bbe2-a7b4-d362-f33d77165f60
+	fromColumn: 'Item Comparison'.'Vendor Key'
+	toColumn: Vendor.'Vendor Key'
+
+relationship 5d71f80a-37f6-2713-9453-6c3abd36f632
+	fromColumn: Project.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship acd71bd7-b63a-44c8-bd94-fd82b7bbfbb1
+	isActive: false
+	fromColumn: 'Project Bids'.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship bcae082b-b361-5880-1790-1ca179df114b
+	isActive: false
+	fromColumn: 'Project Bid Items'.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship 05f93930-c07d-c55a-6223-011ebf182b78
+	isActive: false
+	fromColumn: 'Item Estimates'.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship 05633e22-a3e4-ff79-58ae-3b07136ecf95
+	isActive: false
+	fromColumn: 'Item Comparison'.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship ab1ea18a-6042-5d24-8a78-093f9fa5ee7d
+	isActive: false
+	fromColumn: 'Project Bid Role Comparison'.'Project Classification Key'
+	toColumn: 'Project Classification'.'Project Classification Key'
+
+relationship dfca10f3-82c3-c22e-cb88-76005443d313
+	fromColumn: Project.'County Key'
+	toColumn: County.'County Key'
+
+relationship e856f8a2-d4d8-b48c-c55d-1e66f9466d41
+	isActive: false
+	fromColumn: 'Project Bids'.'County Key'
+	toColumn: County.'County Key'
+
+relationship 1c4335e9-d2b0-9697-3cb2-f99cee7c3cb5
+	isActive: false
+	fromColumn: 'Item Estimates'.'County Key'
+	toColumn: County.'County Key'
+
+relationship 077e2490-c832-c841-33f7-59142664f2a5
+	isActive: false
+	fromColumn: 'Item Comparison'.'County Key'
+	toColumn: County.'County Key'
+
+relationship aa417669-7c07-154b-0d92-0e366847d538
+	isActive: false
+	fromColumn: 'Project Bid Role Comparison'.'County Key'
+	toColumn: County.'County Key'
+
+relationship d0eafd3b-b7f5-3d40-7cb4-336468647ff4
+	fromColumn: 'Project Bid Items'.'Item Specification Key'
+	toColumn: 'Item Specification'.'Item Specification Key'
+
+relationship fc37a39a-f328-5648-3513-a953bb3e025f
+	fromColumn: 'Item Estimates'.'Item Specification Key'
+	toColumn: 'Item Specification'.'Item Specification Key'
+
+relationship e4a717f1-5cf2-51f7-8cb3-d8f0b35ad3d5
+	fromColumn: 'Item Comparison'.'Item Specification Key'
+	toColumn: 'Item Specification'.'Item Specification Key'
+
+relationship 29ee0948-9dca-f9b8-ef88-8393a7398f98
+	fromColumn: 'Project Bid Items'.'Item Work Category Key'
+	toColumn: 'Work Category'.'Item Work Category Key'
+
+relationship f7245413-c201-6bbd-c094-a97c2b7d82e4
+	fromColumn: 'Item Estimates'.'Item Work Category Key'
+	toColumn: 'Work Category'.'Item Work Category Key'
+
+relationship 1347c9ae-109f-bfda-6bad-dc2d6ef17b38
+	fromColumn: 'Item Comparison'.'Item Work Category Key'
+	toColumn: 'Work Category'.'Item Work Category Key'
+
+relationship e34fad4a-6241-4bd1-c3b3-820fdc4216ac
+	fromColumn: 'Project Scope Mix'.'Item Work Category Key'
+	toColumn: 'Work Category'.'Item Work Category Key'
+
+relationship 5aeb389a-278d-ad50-90a5-ca41d6820ec3
+	fromColumn: Project.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship 848b993e-4bc1-6580-bc50-6091a6b614d8
+	isActive: false
+	fromColumn: 'Project Bids'.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship 283194d6-ce04-3b0d-4000-8bf6ba4b1e12
+	isActive: false
+	fromColumn: 'Project Bid Items'.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship c1ee50f6-c8aa-ca9c-a781-a25430aac29c
+	isActive: false
+	fromColumn: 'Item Estimates'.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship 720c14b2-81ee-bda0-7561-53dd54d3000d
+	isActive: false
+	fromColumn: 'Item Comparison'.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship 325b4695-521c-b1a1-ce9c-57353bdbc35e
+	isActive: false
+	fromColumn: 'Project Bid Role Comparison'.'Project Estimated Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship 507e9490-8974-0cfe-55c8-57a6d19ade48
+	isActive: false
+	fromColumn: 'Project Bid Role Comparison'.'Project Actual Let Date'
+	toColumn: Calendar.'Calendar Date'
+
+relationship b91b74b5-3237-4e5e-9dad-3895e6a24f14
+	fromColumn: 'Project Bid Role Comparison'.'Project Key'
+	toColumn: Project.'Project Key'
+

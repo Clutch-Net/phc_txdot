@@ -1,0 +1,33 @@
+expression Host = "adb-7405609261040567.7.azuredatabricks.net" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: e29383a8-e4c8-43cb-a85f-c9ca9804f02a
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression Path = "/sql/1.0/warehouses/f0cbebb10e06fcaf" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: 3157f372-f322-4809-8eaa-9e7e5f5ff882
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression Catalog = "phc_txdot" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: 53067ffb-bf49-40d5-9d72-4452e9ad55c5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression Database = "gold" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: d5d7422e-32a4-412a-a24d-6ab0a74ff70c
+
+	annotation PBI_ResultType = Text
+
+expression LimitData = false meta [IsParameterQuery=true, List={true, false}, DefaultValue=false, Type="Logical", IsParameterQueryRequired=true]
+	lineageTag: 230818e7-e797-4a3a-b6cb-448e7c75e455
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Logical
+

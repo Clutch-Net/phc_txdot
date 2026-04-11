@@ -1,0 +1,45 @@
+/// Project classification dimension used to group projects into standardized business categories for filtering, segmentation, and comparative analysis across the semantic model.
+table 'Project Classification'
+	lineageTag: bfd3e8ea-476d-44c2-b873-8e90eeb1c494
+
+	/// Surrogate integer key for the project classification dimension. Used for relationships only and hidden from report users.
+	column 'Project Classification Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: a4b294fb-5adf-45f4-8874-4e52226ba7d6
+		summarizeBy: none
+		sourceColumn: Project Classification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized project classification label used to group similar projects for analysis and reporting.
+	column 'Project Classification'
+		dataType: string
+		lineageTag: 23d84461-be43-41bf-acd6-c0cadd364d9e
+		summarizeBy: none
+		sourceColumn: Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Project Classification' = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_project_classification",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

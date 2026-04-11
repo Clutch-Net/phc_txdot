@@ -1,0 +1,410 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "d768dcc7146f2cc628e2",
+  "position": {
+    "x": 0,
+    "y": 128.39628482972137,
+    "z": 1000,
+    "height": 591.25696594427245,
+    "width": 1016.0743034055728,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Item Comparison"
+                    }
+                  },
+                  "Property": "Item Analysis Category"
+                }
+              },
+              "queryRef": "Item Comparison.Item Analysis Category",
+              "nativeQueryRef": "Item Analysis Category",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Item Comparison"
+                    }
+                  },
+                  "Property": "Specification"
+                }
+              },
+              "queryRef": "Item Comparison.Specification",
+              "nativeQueryRef": "Specification",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Eng Est"
+                }
+              },
+              "queryRef": "_Measures.Eng Est",
+              "nativeQueryRef": "Eng Est"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "1st"
+                }
+              },
+              "queryRef": "_Measures.1st",
+              "nativeQueryRef": "1st"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "2nd"
+                }
+              },
+              "queryRef": "_Measures.2nd",
+              "nativeQueryRef": "2nd"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "1v2"
+                }
+              },
+              "queryRef": "_Measures.1v2",
+              "nativeQueryRef": "1v2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Focus"
+                }
+              },
+              "queryRef": "_Measures.Focus",
+              "nativeQueryRef": "Focus"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "1vFocus"
+                }
+              },
+              "queryRef": "_Measures.1vFocus",
+              "nativeQueryRef": "1vFocus"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Item Comparison.Item Analysis Category"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Item Comparison"
+                    }
+                  },
+                  "Property": "Item Analysis Category"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Item Comparison.Specification"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "Sum(Project Item Comparison.Winner Vs Second Amount)"
+          }
+        },
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#caa4a8'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#bddab0'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#ded2a6'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Project Item Comparison.Focus Vs Benchmark Amount)"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(Project Item Comparison.Winner Extended Price)"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Sum(Project Item Comparison.Winner Extended Price)"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "480.98549632042943D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Item Comparison.Specification"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "48f8fe306f11e4494873",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Item Comparison"
+              }
+            },
+            "Property": "Specification"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "41be2ad6b193c94763ef",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Eng Est"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e7fc675773effff7d3ec",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "1st"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4d36c7ba8c9fb599a2c0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "2nd"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "858ba0d86f6d64cdfa9e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "1v2"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bcab0fc9a22c3fea771a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Focus"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aec592a8c356ace44410",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "1vFocus"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c0ff78f4631b8e3291d8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Item Comparison"
+              }
+            },
+            "Property": "Item Analysis Category"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

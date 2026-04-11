@@ -1,0 +1,886 @@
+table _Measures
+	lineageTag: cdfea9b3-6c16-4fdd-9267-8ec3596c1498
+
+	measure 'Total Contract Awards 111' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Won Flag] = "TRUE"
+			        ),
+			        CALCULATE(
+			            MAX('Project Bid Role Comparison'[Lowest Bid Amount In Project])
+			        )
+			    )
+			```
+		lineageTag: fe08d041-9011-4d9c-bb6c-964d7e909515
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Underbid Exposure 111' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Won Flag] = "TRUE"
+			        ),
+			        VAR FocusBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Focus Bid Total Amount])
+			            )
+			        VAR BenchmarkBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Benchmark Bid Total Amount])
+			            )
+			        VAR Diff = BenchmarkBid - FocusBid
+			        RETURN
+			            IF(Diff > 0, Diff)
+			    )
+			```
+		lineageTag: c8196e0f-210f-4b61-9ea7-88f2ede18385
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Number of distinct projects where the focus vendor competed.
+	measure Bid = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Competed Flag] = TRUE
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: d07e5323-10a7-4505-8327-1d242d0b1b9f
+
+	/// Number of distinct projects won by the focus vendor.
+	measure Won = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Won Flag] = TRUE
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: d2518244-286f-4723-8de6-7c444cb6bc12
+
+	/// Projects bid but not won by the focus vendor.
+	measure Lost = [Bid] - [Won]
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 1cac7ae4-d47b-4aae-8ac0-2a71bd970a5c
+
+	/// Text summary showing bid, won, and lost project counts for the focus vendor.
+	measure 'Bid - Won - Lost' = ```
+			
+			    VAR b = COALESCE([Bid], 0)
+			    VAR w = COALESCE([Won], 0)
+			    VAR l = COALESCE([Lost], 0)
+			    RETURN
+			        IF(
+			            b = 0 && w = 0 && l = 0,
+			            BLANK(),
+			            FORMAT(b, "#,0")
+			                & " - "
+			                & FORMAT(w, "#,0")
+			                & " - "
+			                & FORMAT(l, "#,0")
+			        )
+			```
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 04b6b92f-d165-4da4-95ab-df0474484ec3
+
+	/// Win rate for the focus vendor.
+	measure 'Win Rate' = DIVIDE([Won], [Bid])
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 35a4a3af-ace0-49c8-9956-ea52922e9e49
+
+	/// Total awarded contract value for projects won by the focus vendor.
+	measure 'Total Contract Awards' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Won Flag] = TRUE
+			        ),
+			        CALCULATE(
+			            MAX('Project Bid Role Comparison'[Lowest Bid Amount In Project])
+			        )
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: d0c8ee62-9410-47ea-9200-45b8362b465d
+
+	/// Average awarded contract value for projects won by the focus vendor.
+	measure 'Average Contract Award' = DIVIDE([Total Contract Awards], [Won]) + 0
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 2719a5a3-0f2c-43c6-b808-96c1775f0aed
+
+	/// Configured focus vendor name in the current filter context.
+	measure 'Focus Vendor' = ```
+			
+			    SELECTEDVALUE(
+			        'Project Bid Role Comparison'[Configured Focus Vendor Name],
+			        ""
+			    ) & ""
+			```
+		displayFolder: Cards\Focus Vendor
+		lineageTag: f2b460c3-5988-436e-8e9e-adf5de91ca60
+
+	/// For projects won by the focus vendor, total positive difference between benchmark bid total and focus vendor bid total.
+	measure 'Underbid Exposure' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Won Flag] = TRUE
+			        ),
+			        VAR FocusBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Focus Bid Total Amount])
+			            )
+			        VAR BenchmarkBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Benchmark Bid Total Amount])
+			            )
+			        VAR Diff = BenchmarkBid - FocusBid
+			        RETURN
+			            IF(Diff > 0, Diff)
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: fccc71ef-7dd6-4f51-9fe4-05cf1b087458
+
+	/// Underbid exposure as a percentage of total focus vendor bids on won projects.
+	measure 'Underbid Exposure Ratio' = ```
+			
+			    DIVIDE(
+			        [Underbid Exposure],
+			        SUMX(
+			            CALCULATETABLE(
+			                VALUES('Project Bid Role Comparison'[Project ID]),
+			                'Project Bid Role Comparison'[Focus Vendor Won Flag] = TRUE
+			            ),
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Focus Bid Total Amount])
+			            )
+			        )
+			    )
+			```
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 292594bd-ba67-4a0f-85d3-3ae3b277e797
+
+	/// For projects lost by the focus vendor, total positive difference between focus vendor bid total and benchmark bid total.
+	measure Overbid = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Competed Flag] = TRUE,
+			            'Project Bid Role Comparison'[Focus Vendor Won Flag] <> TRUE
+			        ),
+			        VAR FocusBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Focus Bid Total Amount])
+			            )
+			        VAR BenchmarkBid =
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Benchmark Bid Total Amount])
+			            )
+			        VAR Diff = FocusBid - BenchmarkBid
+			        RETURN
+			            IF(Diff > 0, Diff)
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: b2cd21b0-4ceb-4cff-ad13-aadb732a4e88
+
+	/// Overbid as a percentage of total focus vendor bids on lost projects.
+	measure 'Overbid Ratio' = ```
+			
+			    DIVIDE(
+			        [Overbid],
+			        SUMX(
+			            CALCULATETABLE(
+			                VALUES('Project Bid Role Comparison'[Project ID]),
+			                'Project Bid Role Comparison'[Focus Vendor Competed Flag] = TRUE,
+			                'Project Bid Role Comparison'[Focus Vendor Won Flag] <> TRUE
+			            ),
+			            CALCULATE(
+			                MAX('Project Bid Role Comparison'[Focus Bid Total Amount])
+			            )
+			        )
+			    )
+			```
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Focus Vendor
+		lineageTag: 557fc5ba-2d58-4624-92bd-88c082eafdbe
+
+	/// Name of the benchmark vendor in the current filter context.
+	measure 'Benchmark Vendor' = ```
+			
+			    SELECTEDVALUE(
+			        'Project Bid Role Comparison'[Benchmark Vendor Name],
+			        ""
+			    ) & ""
+			```
+		displayFolder: Cards\Benchmark Vendor
+		lineageTag: c66a9b93-ee96-41fd-95a7-a7c635e7fe9e
+
+	/// Total awarded contract value on projects where the benchmark vendor beat the focus vendor.
+	measure 'Benchmark Vendor Contract Awards' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Focus Vendor Lost Flag] = TRUE,
+			            NOT ISBLANK('Project Bid Role Comparison'[Benchmark Vendor Name])
+			        ),
+			        CALCULATE(
+			            MAX('Project Bid Role Comparison'[Lowest Bid Amount In Project])
+			        )
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Benchmark Vendor
+		lineageTag: 99bf311e-0c16-47ab-9ab5-95a583fcd561
+
+	/// Difference between total contract awards won by the focus vendor and total contract awards won by benchmark vendors against the focus vendor.
+	measure 'Focus vs Benchmark Contract Award Delta' = [Total Contract Awards] - [Benchmark Vendor Contract Awards]
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Benchmark Vendor
+		lineageTag: bdbb46e7-0ffd-4439-beec-11a7442659e3
+
+	/// Name of the winning vendor in the current filter context.
+	measure '1st Place Vendor' = ```
+			
+			    SELECTEDVALUE(
+			        'Project Bid Role Comparison'[Winner Vendor Name],
+			        ""
+			    ) & ""
+			```
+		displayFolder: Cards\Any Vendor
+		lineageTag: 3cb0cfbf-5562-46e8-b01b-ac4856644d2f
+
+	/// Name of the second place vendor in the current filter context.
+	measure '2nd Place Vendor' = ```
+			
+			    SELECTEDVALUE(
+			        'Project Bid Role Comparison'[Second Vendor Name],
+			        ""
+			    ) & ""
+			```
+		displayFolder: Cards\Any Vendor
+		lineageTag: bd65d691-0561-4f97-b416-cdb947fa3e0f
+
+	/// Name of the selected vendor in the current filter context.
+	measure 'Any Vendor' = SELECTEDVALUE('Vendor'[Vendor Name], "") & ""
+		displayFolder: Cards\Any Vendor
+		lineageTag: d16ffa9c-4cab-4440-b545-ce8fe1002996
+
+	/// Number of distinct projects bid by the selected vendor.
+	measure 'Any Vendor Bid' = DISTINCTCOUNT('Project Bids'[Project ID])
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: a256ebb2-9de7-419f-b828-af1a33bfcda3
+
+	/// Number of distinct projects won by the selected vendor.
+	measure 'Any Vendor Won' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bids'[Project ID]),
+			        'Project Bids'[Is Low Bidder] = TRUE    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: 4bfbbb2a-1c3b-49c6-bea2-391dae2c276f
+
+	/// Number of distinct projects bid but not won by the selected vendor.
+	measure 'Any Vendor Lost' = [Any Vendor Bid] - [Any Vendor Won]
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: dde76cce-666a-4604-8757-2270a0619aca
+
+	/// Total amount bid by the selected vendor across all visible projects.
+	measure 'Any Vendor Total Bids' = ```
+			
+			    SUMX(
+			        VALUES('Project Bids'[Project ID]),
+			        CALCULATE(
+			            MAX('Project Bids'[Max Bid Total Amount])
+			        )
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: ba86d7c1-4350-4d6b-bf1c-54775b7ee680
+
+	/// Total contract value awarded to the selected vendor based on projects won.
+	measure 'Any Vendor Total Contract Awards' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bids'[Project ID]),
+			            'Project Bids'[Is Low Bidder] = TRUE
+			        ),
+			        CALCULATE(
+			            MAX('Project Bids'[Max Bid Total Amount])
+			        )
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: 97acebc4-6266-439d-815a-2a05d506dff8
+
+	/// Share of total awarded contract value represented by the selected vendor in the current selection.
+	measure 'Any Vendor % of Total Awarded' = ```
+			
+			    DIVIDE(
+			        [Any Vendor Total Contract Awards],
+			        CALCULATE(
+			            SUMX(
+			                VALUES('Project Bids'[Project ID]),
+			                CALCULATE(
+			                    MAX('Project Bids'[Max Bid Total Amount])
+			                )
+			            ),
+			            REMOVEFILTERS('Vendor'),
+			            'Project Bids'[Is Low Bidder] = TRUE
+			        )
+			    )
+			```
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Any Vendor
+		lineageTag: ed8cc192-9d33-4440-9b94-a5f1ba88f7a3
+
+	/// Win rate for the selected vendor.
+	measure 'Any Vendor Win Rate' = DIVIDE([Any Vendor Won], [Any Vendor Bid])
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Any Vendor
+		lineageTag: da8f2d6a-9fc1-4920-8059-076340d8ed3e
+
+	/// Weighted win ratio combining the selected vendor's win rate and share of total awarded contract value in the current selection.
+	measure 'Any Vendor Weighted Win Ratio' = [Any Vendor Win Rate] * [Any Vendor % of Total Awarded]
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Any Vendor
+		lineageTag: 753ecaa4-b877-4fe8-8fdc-50711613d2a1
+
+	/// Average bid amount per project for the selected vendor.
+	measure 'Any Vendor Average Bid' = DIVIDE([Any Vendor Total Bids], [Any Vendor Bid])
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: 74002a28-b05d-4252-9155-5bcfeb61cbcc
+
+	/// Average contract award amount for projects won by the selected vendor.
+	measure 'Any Vendor Average Contract Award' = DIVIDE([Any Vendor Total Contract Awards], [Any Vendor Won])
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Any Vendor
+		lineageTag: 363fd338-61a4-47fb-960f-2df63c0d5dc4
+
+	/// Text summary showing bid, won, and lost project counts for the selected vendor.
+	measure 'Any Vendor Bid - Won - Lost' = ```
+			
+			    FORMAT([Any Vendor Bid], "#,0")
+			        & " - "
+			        & FORMAT([Any Vendor Won], "#,0")
+			        & " - "
+			        & FORMAT([Any Vendor Lost], "#,0")
+			```
+		displayFolder: Cards\Any Vendor
+		lineageTag: fd741499-7b27-4756-a574-dc6960bc44e3
+
+	/// Number of projects where the focus vendor competed against the selected vendor.
+	measure 'Times Competed Against Vendor' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Competed Flag] = TRUE,
+			        'Project Bid Role Comparison'[Benchmark Vendor Name]
+			            IN VALUES('Vendor'[Vendor Name])
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: 4bcf077d-f909-429e-91aa-e7cdc523e754
+
+	/// Number of projects where the focus vendor beat the selected vendor.
+	measure 'Times Beat Vendor' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Won Flag] = TRUE,
+			        'Project Bid Role Comparison'[Benchmark Vendor Name]
+			            IN VALUES('Vendor'[Vendor Name])
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: 2e074f95-2a5f-4ca3-8cda-adab37bcaf6f
+
+	/// Number of projects where the focus vendor lost to the selected vendor.
+	measure 'Times Lost to Vendor' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Lost Flag] = TRUE,
+			        'Project Bid Role Comparison'[Benchmark Vendor Name]
+			            IN VALUES('Vendor'[Vendor Name])
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: b9c70c7e-ce9d-4f15-893b-90012988084e
+
+	/// Win rate of the focus vendor against the selected vendor.
+	measure 'Win Rate vs Vendor' = DIVIDE([Times Beat Vendor], [Times Competed Against Vendor])
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Competitor
+		lineageTag: 552ab9d6-8691-4484-a062-6773671432a1
+
+	/// Total contract awards for the selected vendor.
+	measure 'Selected Vendor Contract Awards' = ```
+			
+			    SUMX(
+			        CALCULATETABLE(
+			            VALUES('Project Bid Role Comparison'[Project ID]),
+			            'Project Bid Role Comparison'[Winner Vendor Name]
+			                IN VALUES('Vendor'[Vendor Name])
+			        ),
+			        CALCULATE(
+			            MAX('Project Bid Role Comparison'[Lowest Bid Amount In Project])
+			        )
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: 08349a31-ced6-4c2f-83d0-491ab3a884df
+
+	/// Number of projects won by the selected vendor.
+	measure 'Selected Vendor Won' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Winner Vendor Name]
+			            IN VALUES('Vendor'[Vendor Name])
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: df437995-51bb-4df3-8954-cebd3efadd0c
+
+	/// Win rate for the selected vendor.
+	measure 'Selected Vendor Win Rate' = DIVIDE([Selected Vendor Won], [Any Vendor Bid])
+		formatString: 0.00%;(0.00%)
+		displayFolder: Cards\Competitor
+		lineageTag: 90c603a1-a885-4a41-bfe8-1624fc5f6419
+
+	/// Net head-to-head win rate of the focus vendor against the selected vendor. Positive means the focus vendor wins more often; negative means the selected vendor wins more often.
+	measure 'Net Win Rate vs Vendor' = ```
+			
+			    DIVIDE(
+			        [Times Beat Vendor] - [Times Lost to Vendor],
+			        [Times Competed Against Vendor]
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Cards\Competitor
+		lineageTag: 4f182a18-b15a-4aa8-a30a-855a0c57bd79
+
+	/// Net wins of the focus vendor against the selected vendor.
+	measure 'Net Wins vs Vendor' = [Times Beat Vendor] - [Times Lost to Vendor]
+		formatString: #,0;(#,0)
+		displayFolder: Cards\Competitor
+		lineageTag: d7d8c022-ea90-485c-9971-04196b2b580b
+
+	/// Distinct count of projects at the current bid item/specification filter context.
+	measure 'Distinct Project Count by Specification' = DISTINCTCOUNT('Project Bid Items'[Project ID])
+		formatString: #,0;(#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: e54b9a9f-7a6a-41d4-9f1a-81e01baa6cfa
+
+	/// Sum of focus-vs-benchmark amount at the item comparison grain.
+	measure 'Focus vs Benchmark' = SUM('Item Comparison'[Focus Vs Benchmark Amount])
+		formatString: $#,0;($#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: d0561ba4-8b60-4b6e-a31f-db554c43289a
+
+	/// Absolute summed focus-vs-benchmark amount.
+	measure 'ABS Focus vs Benchmark' = SUM('Item Comparison'[ABS Focus Vs Benchmark Amount])
+		formatString: $#,0;($#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 340a3373-790b-4bc0-bd5c-790e93787ee1
+
+	/// At Item Work Category level, shows share of total absolute focus-vs-benchmark amount across selected categories. At Specification level, shows share within the parent work category.
+	measure 'ABS % of Total Focus vs Benchmark' = ```
+			
+			    VAR _value = [ABS Focus vs Benchmark]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			
+			            ISINSCOPE('Item Comparison'[Specification]),
+			                DIVIDE(
+			                    _value,
+			                    CALCULATE(
+			                        [ABS Focus vs Benchmark],
+			                        ALLSELECTED('Item Comparison'[Specification])
+			                    )
+			                ),
+			
+			            ISINSCOPE('Item Comparison'[Item Work Category]),
+			                DIVIDE(
+			                    _value,
+			                    CALCULATE(
+			                        [ABS Focus vs Benchmark],
+			                        ALLSELECTED('Item Comparison'[Item Work Category])
+			                    )
+			                ),
+			
+			            DIVIDE(
+			                _value,
+			                CALCULATE(
+			                    [ABS Focus vs Benchmark],
+			                    ALLSELECTED('Item Comparison')
+			                )
+			            )
+			        )
+			```
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 6123db48-3411-45d4-9037-f3c0b78bbea2
+
+	/// Percent contribution of over/under bidding within each work category.
+	measure 'ABS % by Over Under' = ```
+			
+			    DIVIDE(
+			        [ABS Focus vs Benchmark],
+			        CALCULATE(
+			            [ABS Focus vs Benchmark],
+			            ALLEXCEPT(
+			                'Item Comparison',
+			                'Item Comparison'[Item Work Category],
+			                'Item Comparison'[Over Under Flag]
+			            )
+			        )
+			    )
+			```
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 3779a97c-4fde-46e8-b414-22997db7f429
+
+	/// Absolute amount where focus vendor overbid benchmark.
+	measure 'Overbid Amount' = ```
+			
+			    CALCULATE(
+			        [ABS Focus vs Benchmark],
+			        'Item Comparison'[Over Under Flag] = "Overbid"
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: b9358753-4457-4ddc-b6d5-5011b630d03f
+
+	/// Absolute amount where focus vendor underbid benchmark.
+	measure 'Underbid Amount' = ```
+			
+			    CALCULATE(
+			        [ABS Focus vs Benchmark],
+			        'Item Comparison'[Over Under Flag] = "Underbid"
+			    )
+			```
+		formatString: $#,0;($#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 3e0cb065-a628-49e4-9c79-6d0d87690828
+
+	/// Net difference between focus and benchmark.
+	measure 'Net Focus vs Benchmark' = SUM('Item Comparison'[Focus Vs Benchmark Amount])
+		formatString: $#,0;($#,0)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 8be1c259-d69e-4d45-89ae-a7a574cf6111
+
+	/// Percent of total impact where focus vendor underbid benchmark.
+	measure 'Underbid %' = DIVIDE([Underbid Amount], [ABS Focus vs Benchmark])
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: cc105888-939b-4290-b455-9bf06fefb8d2
+
+	/// Target underbid percentage.
+	measure 'Underbid Target %' = 0.51
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: f37b849c-e83b-4d99-b1c3-1d6380b574e6
+
+	/// Difference between actual and target underbid percentage.
+	measure 'Underbid Variance %' = [Underbid %] - [Underbid Target %]
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 6297abb5-48e4-4389-971e-f393e22c2367
+
+	/// Status of underbid rate relative to target band.
+	measure 'Bidding Strategy' = ```
+			
+			    VAR v = [Underbid %]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            v < 0.51, "Too Conservative",
+			            v > 0.55, "Too Aggressive",
+			            "On Target"
+			        )
+			```
+		displayFolder: Analysis\Item Comparison
+		lineageTag: e5295306-78ae-4efd-8047-792da480aacf
+
+	/// Color indicator for underbid gauge.
+	measure 'Underbid Color' = ```
+			
+			    VAR v = [Underbid %]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            v < 0.51, "#D9534F",
+			            v > 0.55, "#D9534F",
+			            "#5CB85C"
+			        )
+			```
+		displayFolder: Analysis\Item Comparison
+		lineageTag: 181a2095-d8ae-4f0e-9651-5d92d30b80a9
+
+	/// Midpoint of target range.
+	measure 'Underbid Target Mid' = 0.53
+		formatString: 0.00%;(0.00%)
+		displayFolder: Analysis\Item Comparison
+		lineageTag: b6089aa6-545a-41d7-ba60-98cf705f93d3
+
+	/// Count of project opportunities not pursued by the focus vendor.
+	measure 'Missed Opportunities' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Is Project Opportunity Flag] = "TRUE",
+			        'Project Bid Role Comparison'[Focus Vendor Competed Flag] = "FALSE"
+			    ) 
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Analysis\Opportunities
+		lineageTag: 65298a4e-c16d-47ef-9175-4df85b68cbe8
+
+	/// Count of opportunities where the focus vendor participated.
+	measure 'Opportunity Participation Count' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Participated Opportunity Flag] = "TRUE"
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Analysis\Opportunities
+		lineageTag: 43cf5562-f3de-4513-999f-29a830c5e046
+
+	/// Count of opportunities where the focus vendor did not participate.
+	measure 'Opportunity Non-Participation Count' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('Project Bid Role Comparison'[Project ID]),
+			        'Project Bid Role Comparison'[Focus Vendor Missed Opportunity Flag] = "TRUE"
+			    )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Analysis\Opportunities
+		lineageTag: 3eddd458-4549-43be-b5e5-cd198d9fe499
+
+	/// Participation rate on project opportunities.
+	measure 'Opportunity Participation Rate' = ```
+			
+			    DIVIDE(
+			        [Opportunity Participation Count],
+			        [Missed Opportunities]
+			    )
+			```
+		formatString: 0.0%;(0.0%)
+		displayFolder: Analysis\Opportunities
+		lineageTag: 17c21141-aa3d-486e-bb46-6a367139e742
+
+	/// Numeric map status code by location.
+	measure 'Map Status Code' = ```
+			
+			    VAR _Bid = [Bid]
+			    VAR _Won = [Won]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            _Bid = 0, 0,
+			            _Bid > 0 && _Won = 0, 1,
+			            _Won = 1, 2,
+			            _Won > 1, 3,
+			            BLANK()
+			        )
+			```
+		formatString: #,0;(#,0)
+		displayFolder: Map
+		lineageTag: b1bfd6c5-5e91-43a1-8f4c-4a578e41d360
+
+	/// Text map status by location.
+	measure 'Map Status' = ```
+			
+			    SWITCH(
+			        [Map Status Code],
+			        0, "Never Bid",
+			        1, "Bid, Never Won",
+			        2, "Won Once",
+			        3, "Won Multiple Times",
+			        BLANK()
+			    )
+			```
+		displayFolder: Map
+		lineageTag: 6d81773b-5dd9-441c-b41a-fa8ccf716e51
+
+	/// Indicator for whether the current focus bid code is in the targeted bid-code list.
+	measure 'Is Target Focus Bid Code' =
+			
+			VAR _Code =
+			    SELECTEDVALUE ( 'Item Comparison'[Focus Bid Code] )
+			RETURN
+			    IF (
+			        _Code IN {
+			            "678-7010","658-7088","658-7104","658-7091","677-7010","403-7001","465-7070","496-7007","416-7024","432-7003",
+			            "420-7057","658-7031","658-7103","506-7046","644-7031","618-7090","678-7016","3003-7001","543-7017","662-7092",
+			            "545-7004","678-7025","467-7325","677-7022","668-7093","666-7363","454-7005","506-7003","666-7243","432-7055",
+			            "425-7004","6013-7006","479-7002","416-7028","636-7003","734-7002","668-7103","544-7003","420-7044","730-7019",
+			            "644-7040","503-7001","618-7060","432-7029","514-7038","644-7028","662-7075","666-7354","425-7002","666-7242",
+			            "512-7049","540-7015","666-7356","544-7001","677-7015","438-7013","506-7011","506-7024","432-7001","662-7082",
+			            "425-7001","658-7012","666-7239","514-7004","545-7014","400-7011","636-7004","542-7002","104-7001","168-7001",
+			            "650-7041","104-7006","624-7002","496-7004","100-7002","672-7006","276-7343","260-7001","164-7007","467-7348",
+			            "540-7001","110-7001","668-7135","110-7002","658-7018","164-7015","500-7001","512-7025","506-7040","164-7065",
+			            "467-7380","260-7007","505-7003","666-7238","467-7366","506-7020","166-7001","624-7006","162-7002","105-7055",
+			            "104-7005","104-7036","479-7006","506-7041","512-7013","542-7001","658-7090","132-7006","432-7013","636-7002",
+			            "464-7007","420-7022","464-7005","618-7053","636-7005","496-7002","647-7001","506-7044","450-7024","467-7326",
+			            "666-7353","506-7039","678-7009","662-7074","650-7193","658-7032","543-7037","425-7005","402-7001","668-7091",
+			            "425-7006","647-7003","760-7002","662-7097","400-7010","465-7317","464-7010","514-7001","678-7006","636-7006",
+			            "650-7048","677-7009","644-7001","618-7052","292-7014","454-7004","677-7006","678-7002","678-7004","644-7004",
+			            "401-7001","502-7001","662-7061","543-7038","662-7064","738-7029","420-7038","506-7002","425-7043","677-7002",
+			            "545-7006","465-7332","677-7004","432-7005","662-7072","360-7006","275-7001","666-7270","422-7003","666-7266",
+			            "678-7005","6064-7003","666-7347","514-7053","677-7005","416-7007"
+			        },
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: 78f0ac32-4e85-492a-be83-88533de89f85
+
+	measure 'Min Let Date' = ```
+			
+			CALCULATE (
+			    MIN ( 'Project'[Project Actual Let Date] ),
+			    REMOVEFILTERS ()
+			)
+			
+			```
+		formatString: yyyy-mm=dd
+		lineageTag: 6ebe21ab-a435-4526-a335-d9c1f5d87a27
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Max Let Date' =
+			
+			CALCULATE (
+			    MAX ( 'Project'[Project Actual Let Date] ),
+			    REMOVEFILTERS ()
+			)
+		formatString: yyyy-mm-dd
+		lineageTag: 64ea9af7-77e7-4aea-b524-ed144358a3bb
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Is In Let Date Range' =
+			
+			VAR CurrentDate =
+			    MAX ( 'Calendar'[Calendar Date] )
+			RETURN
+			    IF (
+			        CurrentDate >= [Min Let Date]
+			            && CurrentDate <= [Max Let Date],
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: 009a8c1e-9b8e-4834-beb6-799f417ff59c
+
+	measure 'Date In Active Range' =
+			
+			VAR MinDate =
+			    CALCULATE ( MIN ( 'Project'[Project Actual Let Date] ), REMOVEFILTERS() )
+			VAR MaxDate =
+			    CALCULATE ( MAX ( 'Project'[Project Actual Let Date] ), REMOVEFILTERS() )
+			VAR CurrentDate =
+			    MAX ( 'Calendar'[Calendar Date] )
+			RETURN
+			    INT ( CurrentDate >= MinDate && CurrentDate <= MaxDate )
+		formatString: 0
+		lineageTag: 70448619-dc4a-46f0-b5b7-b051c454a808
+
+	/// Total engineer's estimate across all bid items. Represents the baseline expected project cost used for comparison against submitted bids.
+	measure 'Eng Est' = SUM('Item Comparison'[Estimate Extended Price])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: edf26ba5-e1c0-46bb-817b-92e92aab166b
+
+	/// Total value of the lowest (winning) bid across all items. This represents the awarded contract amount for the project.
+	measure 1st = SUM('Item Comparison'[Winner Extended Price])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: c918e268-7a95-4276-bce9-2b600e46e0e3
+
+	/// Total value of the second-lowest bid across all items. Useful for understanding bid competitiveness and spread between top bidders.
+	measure 2nd = SUM('Item Comparison'[Second Extended Price])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: 0167227f-7926-4c35-9384-3cbcf4ff573b
+
+	/// Difference between the winning bid and the second-lowest bid. Indicates how close the competition was for the awarded project.
+	measure 1v2 = SUM('Item Comparison'[Winner Vs Second Amount])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: e59c19ac-e253-49bb-b3e0-81fbede256de
+
+	/// Total value of the focus vendor’s bid across all items. Used to evaluate performance and competitiveness of the selected vendor.
+	measure Focus = SUM('Item Comparison'[Focus Extended Price])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: a9012c57-068c-4e89-8f38-f0712ef7765c
+
+	/// Difference between the focus vendor’s bid and the benchmark (typically the winning bid). Shows how far the focus vendor was from winning.
+	measure 1vFocus = SUM('Item Comparison'[Focus Vs Benchmark Amount])
+		formatString: #,0;(#,0)
+		displayFolder: Closed Project Detail
+		lineageTag: cecae670-4c85-476b-9b11-1db24c76a6bb
+
+	/// Model column in table _Measures.
+	column Column1
+		dataType: string
+		lineageTag: f9a4f2ef-99ca-406d-b076-e25755d5eab1
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,81 @@
+/// Conformed work category dimension used to group bid and estimate items into standardized work buckets for specification analysis, scope mix analysis, and reporting.
+table 'Work Category'
+	lineageTag: 457b48cb-61da-44db-bcfb-dc22798db088
+
+	/// Technical key for the work category dimension. Used for model relationships only and hidden from report users.
+	column 'Item Work Category Key'
+		dataType: string
+		isHidden
+		lineageTag: 7d7ba2a2-245c-4173-9a6e-ac3b73411f05
+		summarizeBy: none
+		sourceColumn: Item Work Category Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Normalized specification description used as the effective basis for work category assignment.
+	column 'Effective Specification Description'
+		dataType: string
+		lineageTag: da3ee913-5a37-483e-a839-e59596797e43
+		summarizeBy: none
+		sourceColumn: Effective Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Original specification description associated with the work category mapping.
+	column 'Specification Description'
+		dataType: string
+		lineageTag: 8ef6767f-755c-4eb8-b769-b245893b3470
+		summarizeBy: none
+		sourceColumn: Specification Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized work category assigned to the item or specification for reporting and analysis.
+	column 'Item Work Category'
+		dataType: string
+		lineageTag: 1259e161-6ce5-4f18-b300-bba597aa9c52
+		summarizeBy: none
+		sourceColumn: Item Work Category
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Source or derivation method used to assign the item to the work category.
+	column 'Item Work Category Source'
+		dataType: string
+		lineageTag: 4f722786-909f-4514-8f84-d3a7bc7c30a7
+		summarizeBy: none
+		sourceColumn: Item Work Category Source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the work category assignment was defaulted rather than directly mapped.
+	column 'Is Defaulted Work Category'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3129bb86-7f63-4f0a-8497-1482d920654b
+		summarizeBy: none
+		sourceColumn: Is Defaulted Work Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Work Category' = m
+		mode: import
+		source =
+				let
+				    View = "vw_dim_item_work_category",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

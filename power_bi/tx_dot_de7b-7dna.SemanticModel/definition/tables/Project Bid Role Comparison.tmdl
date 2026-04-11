@@ -1,0 +1,1171 @@
+/// Project-level comparison fact containing focus vendor, benchmark, winner, second-place, estimate, and opportunity context at one row per project.
+table 'Project Bid Role Comparison'
+	lineageTag: 9abb1e5e-71dc-4b28-8284-4ff4861d4af4
+
+	/// Technical key for the project bid role comparison fact row. Used for row identity and hidden from report users.
+	column 'Project Bid Role Comparison Key'
+		dataType: string
+		isHidden
+		lineageTag: 8d0c41f5-1ec7-4f20-8097-427b363cd075
+		summarizeBy: none
+		sourceColumn: Project Bid Role Comparison Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the row to the Project dimension. Hidden so users filter through the Project table instead.
+	column 'Project Key'
+		dataType: string
+		isHidden
+		lineageTag: 754f4b0c-ab37-4392-985f-8282932d6780
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business project identifier associated with the project comparison row.
+	column 'Project ID'
+		dataType: string
+		lineageTag: 80fec073-db5b-485c-8048-e008789105d3
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the row to the Project Classification dimension. Hidden so users filter through the Project Classification table instead.
+	column 'Project Classification Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: aa844dd2-4f13-473a-8ce6-82c64c82534e
+		summarizeBy: none
+		sourceColumn: Project Classification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the row to the County dimension. Hidden so users filter through the County table instead.
+	column 'County Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: cb178ac8-999a-4504-82ce-24fd06ba54a1
+		summarizeBy: none
+		sourceColumn: County Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project name carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Name'
+		dataType: string
+		isHidden
+		lineageTag: bd91d81a-ddf7-46a9-8b99-3129a3bb7815
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Number'
+		dataType: string
+		isHidden
+		lineageTag: 3b1fcd79-e8e9-4b5c-ab91-52a94fa70a4b
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'State Project Number'
+		dataType: string
+		isHidden
+		lineageTag: f23fd8db-6572-47a8-85a6-2615ba0a9cc9
+		summarizeBy: none
+		sourceColumn: State Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Control-Section-Job identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Control Section Job CSJ'
+		dataType: string
+		isHidden
+		lineageTag: b221dbb7-4580-4019-97fc-d7327e65a8b2
+		summarizeBy: none
+		sourceColumn: Control Section Job CSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Controlling project identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Controlling Project ID CCSJ'
+		dataType: string
+		isHidden
+		lineageTag: ba3c1004-4c53-4279-83ed-6a4222da2d6d
+		summarizeBy: none
+		sourceColumn: Controlling Project ID CCSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project type carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Type'
+		dataType: string
+		isHidden
+		lineageTag: d15568b3-3228-425b-b35b-b0224275e097
+		summarizeBy: none
+		sourceColumn: Project Type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project classification carried on the fact row for convenience. Hidden so users use the Project Classification dimension instead.
+	column 'Project Classification'
+		dataType: string
+		isHidden
+		lineageTag: 41776b99-eb9e-4159-9987-51e3d8f560f8
+		summarizeBy: none
+		sourceColumn: Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Actual Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 5a945266-3d28-4b1d-b91d-edb0eca220a3
+		summarizeBy: none
+		sourceColumn: Project Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Estimated let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Estimated Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 12f5571c-d215-43b3-afb2-ae6373d9af18
+		summarizeBy: none
+		sourceColumn: Project Estimated Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Starting project limits carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Limits From'
+		dataType: string
+		isHidden
+		lineageTag: 07818c11-427b-4085-887b-95702a498adc
+		summarizeBy: none
+		sourceColumn: Project Limits From
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Ending project limits carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Limits To'
+		dataType: string
+		isHidden
+		lineageTag: 5e778fee-c60f-46d4-aa06-679be335fd97
+		summarizeBy: none
+		sourceColumn: Project Limits To
+
+		annotation SummarizationSetBy = Automatic
+
+	/// County label carried on the fact row for convenience. Hidden so users use the County dimension instead.
+	column County
+		dataType: string
+		isHidden
+		lineageTag: 9ad6cf83-cf29-4e12-ae4c-2f00875a4219
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formatted location label carried on the fact row for convenience. Hidden so users use the Project and County dimensions instead.
+	column Location
+		dataType: string
+		isHidden
+		lineageTag: 09e753aa-310c-42a8-8dbe-bb204362bbf6
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	/// District or division carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'District Division'
+		dataType: string
+		isHidden
+		lineageTag: a8129d28-458d-4c44-81e1-6c66a1a10186
+		summarizeBy: none
+		sourceColumn: District Division
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Highway carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column Highway
+		dataType: string
+		isHidden
+		lineageTag: 87da70ae-94d3-42db-911b-706e26a64ba2
+		summarizeBy: none
+		sourceColumn: Highway
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short project description carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Short Description'
+		dataType: string
+		isHidden
+		lineageTag: addea344-1488-4b81-9afa-d19a55d1b23e
+		summarizeBy: none
+		sourceColumn: Short Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Federal project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Federal Project Number'
+		dataType: string
+		isHidden
+		lineageTag: 148a1938-e035-48e7-8d8b-6cbaaa61ddaa
+		summarizeBy: none
+		sourceColumn: Federal Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Configured focus vendor name used to drive project-level focus vendor analysis.
+	column 'Configured Focus Vendor Name'
+		dataType: string
+		lineageTag: d76af0a6-5bdd-4c33-afc6-79c95da5e6f0
+		summarizeBy: none
+		sourceColumn: Configured Focus Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized configured focus vendor name used in project-level focus vendor analysis.
+	column 'Configured Focus Vendor Name Standardized'
+		dataType: string
+		lineageTag: e7d25c84-0a51-4bbd-bc79-411868f61e9c
+		summarizeBy: none
+		sourceColumn: Configured Focus Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the configured focus vendor bid the project.
+	column 'Focus Vendor Present Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5e653bb7-8a03-4abe-8032-cc7ae7414c0d
+		summarizeBy: none
+		sourceColumn: Focus Vendor Present Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the configured focus vendor won the project.
+	column 'Focus Vendor Won Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 316295bf-4471-4ab9-a5de-f78f38e8a77d
+		summarizeBy: none
+		sourceColumn: Focus Vendor Won Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the configured focus vendor bid but did not win the project.
+	column 'Focus Vendor Lost Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16305a6a-329f-4b17-85f5-18aafb7f6a75
+		summarizeBy: none
+		sourceColumn: Focus Vendor Lost Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the configured focus vendor competed on the project.
+	column 'Focus Vendor Competed Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0d366cd1-8d85-4159-b20d-bddb926112f5
+		summarizeBy: none
+		sourceColumn: Focus Vendor Competed Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key identifying the focus vendor on the project comparison row. Hidden from report users.
+	column 'Focus Vendor Key'
+		dataType: string
+		isHidden
+		lineageTag: 778a7fca-3cc9-428d-810e-9649f4d256be
+		summarizeBy: none
+		sourceColumn: Focus Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Focus vendor name for the project comparison row.
+	column 'Focus Vendor Name'
+		dataType: string
+		lineageTag: 0d64dcce-5cea-45b7-b038-78b7c0e47686
+		summarizeBy: none
+		sourceColumn: Focus Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized focus vendor name for the project comparison row.
+	column 'Focus Vendor Name Standardized'
+		dataType: string
+		lineageTag: dfa12d84-ea37-45b2-8476-b4568b09c087
+		summarizeBy: none
+		sourceColumn: Focus Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total bid amount submitted by the focus vendor on the project.
+	column 'Focus Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 141432d6-8b4c-45bd-9e63-7736a9295bb7
+		summarizeBy: sum
+		sourceColumn: Focus Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Project bid rank of the focus vendor, where lower values indicate more competitive bids.
+	column 'Focus Project Bid Rank'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: b57e9eeb-7bd6-41cc-8a94-98e3d8e1633a
+		summarizeBy: sum
+		sourceColumn: Focus Project Bid Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Status label describing the focus vendor outcome on the project.
+	column 'Focus Vendor Status'
+		dataType: string
+		lineageTag: 81fe23db-d879-4b60-9cf3-8087d6f2a763
+		summarizeBy: none
+		sourceColumn: Focus Vendor Status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bucketed rank classification for the focus vendor on the project.
+	column 'Focus Vendor Rank Bucket'
+		dataType: string
+		lineageTag: 63f12344-1c46-44f0-a7d0-21460902d57c
+		summarizeBy: none
+		sourceColumn: Focus Vendor Rank Bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key identifying the winning vendor on the project comparison row. Hidden from report users.
+	column 'Winner Vendor Key'
+		dataType: string
+		isHidden
+		lineageTag: 47e21421-f8db-4139-b66e-e39143703e21
+		summarizeBy: none
+		sourceColumn: Winner Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Winning vendor name for the project.
+	column 'Winner Vendor Name'
+		dataType: string
+		lineageTag: 23912786-3b71-429f-a031-dc9bb31effec
+		summarizeBy: none
+		sourceColumn: Winner Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized winning vendor name for the project.
+	column 'Winner Vendor Name Standardized'
+		dataType: string
+		lineageTag: cd9ae5c0-3004-4fb0-86dc-6009cba54b84
+		summarizeBy: none
+		sourceColumn: Winner Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Winning total bid amount for the project.
+	column 'Winner Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 2e779ea7-2716-4f3d-9ce2-9eb3168a5bbf
+		summarizeBy: sum
+		sourceColumn: Winner Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Project bid rank of the winning vendor.
+	column 'Winner Project Bid Rank'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 1d4f118c-8065-4891-a75c-9db11da6d14e
+		summarizeBy: sum
+		sourceColumn: Winner Project Bid Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key identifying the second-place vendor on the project comparison row. Hidden from report users.
+	column 'Second Vendor Key'
+		dataType: string
+		isHidden
+		lineageTag: 8d66367b-ebf1-41c4-91ef-189cc4539232
+		summarizeBy: none
+		sourceColumn: Second Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Second-place vendor name for the project.
+	column 'Second Vendor Name'
+		dataType: string
+		lineageTag: 35b053af-d750-48ef-9c24-d7fe996e5bfd
+		summarizeBy: none
+		sourceColumn: Second Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized second-place vendor name for the project.
+	column 'Second Vendor Name Standardized'
+		dataType: string
+		lineageTag: 8f86423f-bea5-4f81-a2a0-9baee3895d57
+		summarizeBy: none
+		sourceColumn: Second Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Second-place total bid amount for the project.
+	column 'Second Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 5956b5d7-258b-4bac-8ffd-394cd016ab41
+		summarizeBy: sum
+		sourceColumn: Second Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Project bid rank of the second-place vendor.
+	column 'Second Project Bid Rank'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 527a6a74-9e17-4f37-b06c-eaba7ae9bfba
+		summarizeBy: sum
+		sourceColumn: Second Project Bid Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key identifying the benchmark vendor on the project comparison row. Hidden from report users.
+	column 'Benchmark Vendor Key'
+		dataType: string
+		isHidden
+		lineageTag: b6fc8a49-9760-4e78-a4e9-6b59d7fa3672
+		summarizeBy: none
+		sourceColumn: Benchmark Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Benchmark vendor name used for project-level focus-versus-benchmark comparison.
+	column 'Benchmark Vendor Name'
+		dataType: string
+		lineageTag: a1e1c0ac-e171-4b6e-91f3-592f1b18b3ab
+		summarizeBy: none
+		sourceColumn: Benchmark Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized benchmark vendor name used for project-level comparison.
+	column 'Benchmark Vendor Name Standardized'
+		dataType: string
+		lineageTag: 716d5c66-8911-4be6-a409-86a8aa198fa9
+		summarizeBy: none
+		sourceColumn: Benchmark Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Benchmark total bid amount used for project-level focus-versus-benchmark comparison.
+	column 'Benchmark Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: f60316b9-c1bc-4468-9c1a-66f20062692c
+		summarizeBy: sum
+		sourceColumn: Benchmark Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Definition describing how the benchmark vendor was assigned for the project.
+	column 'Benchmark Definition'
+		dataType: string
+		lineageTag: b6fb8396-e1ae-4502-958d-5369a35da2ea
+		summarizeBy: none
+		sourceColumn: Benchmark Definition
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of bidders participating in the project.
+	column 'Bidder Count In Project'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: f34f28cc-c46b-4bbb-84f7-dbba3c76decd
+		summarizeBy: sum
+		sourceColumn: Bidder Count In Project
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the project had only one bidder.
+	column 'Single Bidder Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ccb9f5ee-f44a-4dbb-ba59-b56aa08ee656
+		summarizeBy: none
+		sourceColumn: Single Bidder Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the project had more than one bidder.
+	column 'Competitive Project Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a0c7afa-9d6a-4d5a-bd51-e2163494ab0b
+		summarizeBy: none
+		sourceColumn: Competitive Project Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Lowest total bid amount submitted for the project.
+	column 'Lowest Bid Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: f0344044-262c-4c8c-bb01-a027335a055c
+		summarizeBy: sum
+		sourceColumn: Lowest Bid Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Highest total bid amount submitted for the project.
+	column 'Highest Bid Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: fae60a1a-6188-45d5-9973-5fd5bdebf1e5
+		summarizeBy: sum
+		sourceColumn: Highest Bid Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference between the highest and lowest total bid amounts submitted for the project.
+	column 'Bid Spread Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: b1fa1183-4a03-4198-bace-7bc22fe29455
+		summarizeBy: sum
+		sourceColumn: Bid Spread Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Engineer estimate total amount used for project-level comparison.
+	column 'Estimate Project Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 6c284616-dd58-4d05-9f04-36b9a7ba4a40
+		summarizeBy: sum
+		sourceColumn: Estimate Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Diagnostic item-rollup total from estimate items used to compare against the project-level estimate total.
+	column 'Estimate Item Extended Total Diagnostic'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: de37c958-9efc-42fc-af13-7f559d7341b8
+		summarizeBy: sum
+		sourceColumn: Estimate Item Extended Total Diagnostic
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Absolute difference between the header estimate total and the item-rollup estimate total.
+	column 'Header Vs Item Extended Total Abs Diff Diagnostic'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: a10ba57d-fc27-45ef-885c-bebc349c594f
+		summarizeBy: sum
+		sourceColumn: Header Vs Item Extended Total Abs Diff Diagnostic
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference in total bid amount between the winner and the second-place bidder.
+	column 'Winner Vs Second Amount Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 0771c20b-a193-4519-8255-b3e04f8dcb14
+		summarizeBy: sum
+		sourceColumn: Winner Vs Second Amount Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio comparing the winner total bid amount to the second-place total bid amount.
+	column 'Winner Vs Second Amount Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 4d6b1501-9a42-4c16-a70e-2abb12203ce3
+		summarizeBy: sum
+		sourceColumn: Winner Vs Second Amount Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference in total bid amount between the focus vendor and the benchmark vendor.
+	column 'Focus Vs Benchmark Amount Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 3bc8f9fe-c82f-43e6-a347-b59a1f1f778f
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark Amount Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio comparing the focus vendor total bid amount to the benchmark vendor total bid amount.
+	column 'Focus Vs Benchmark Amount Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 1c67d6e6-46dc-4db2-be7c-16bc89e85a01
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark Amount Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Outcome label describing whether the focus vendor beat, lost to, tied, or lacked a benchmark on the project.
+	column 'Focus Vs Benchmark Outcome'
+		dataType: string
+		lineageTag: 86f34f60-3a2c-4581-8a93-70724f4e6403
+		summarizeBy: none
+		sourceColumn: Focus Vs Benchmark Outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Difference between the winner total bid amount and the project engineer estimate total.
+	column 'Winner Vs Estimate Amount Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: ba47d788-d0f8-4ae0-b59b-0a116d8f06e7
+		summarizeBy: sum
+		sourceColumn: Winner Vs Estimate Amount Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio comparing the winner total bid amount to the project engineer estimate total.
+	column 'Winner Vs Estimate Amount Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 2a4a070e-779b-4abc-b5dc-f896e4ba925d
+		summarizeBy: sum
+		sourceColumn: Winner Vs Estimate Amount Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference between the focus vendor total bid amount and the project engineer estimate total.
+	column 'Focus Vs Estimate Amount Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: e4502283-2502-4566-a90d-2abdae9c4137
+		summarizeBy: sum
+		sourceColumn: Focus Vs Estimate Amount Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio comparing the focus vendor total bid amount to the project engineer estimate total.
+	column 'Focus Vs Estimate Amount Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 00915bb3-8068-4fbf-a030-c325e0b0223e
+		summarizeBy: sum
+		sourceColumn: Focus Vs Estimate Amount Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indicator showing whether the focus vendor total bid amount was below the engineer estimate total.
+	column 'Focus Under Estimate Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3257184f-ccda-4cbe-a738-09852e95cd4a
+		summarizeBy: none
+		sourceColumn: Focus Under Estimate Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the winning bid total was below the engineer estimate total.
+	column 'Winner Under Estimate Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5801456d-cca5-4d65-8def-f74c5439ea6a
+		summarizeBy: none
+		sourceColumn: Winner Under Estimate Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the project bid spread qualifies as tight based on model logic.
+	column 'Tight Bid Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9ecf541b-43b8-48d6-8e29-014e8aad2cc2
+		summarizeBy: none
+		sourceColumn: Tight Bid Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the project lacks a usable estimate total.
+	column 'Missing Estimate Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f9718413-c2a5-48bd-8b6c-e3eaf20af704
+		summarizeBy: none
+		sourceColumn: Missing Estimate Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether a second-place bidder exists for the project.
+	column 'Has Second Place Bidder'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 464b5419-879b-4d8b-82c2-10e0680a5b57
+		summarizeBy: none
+		sourceColumn: Has Second Place Bidder
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the winner and second-place bidder tied at the project level.
+	column 'Winner Second Tie Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f9fa683b-9cb2-40fd-b427-5b5626de682d
+		summarizeBy: none
+		sourceColumn: Winner Second Tie Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor and benchmark vendor tied at the project level.
+	column 'Focus Benchmark Tie Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2bb73e0e-8648-4bb0-b929-6232e0470aef
+		summarizeBy: none
+		sourceColumn: Focus Benchmark Tie Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor beat the second-place bid threshold based on model logic.
+	column 'Focus Beats Second Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2d7e5e94-f1cb-4cca-a788-2d9d085dbb4b
+		summarizeBy: none
+		sourceColumn: Focus Beats Second Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Diagnostic winner rank value retained for debugging and validation.
+	column 'Winner Project Bid Rank For Debug'
+		dataType: int64
+		isHidden
+		formatString: #,0;(#,0)
+		lineageTag: 6b2bc32f-c78d-44d4-be88-be2602b004d1
+		summarizeBy: sum
+		sourceColumn: Winner Project Bid Rank For Debug
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Diagnostic second-place rank value retained for debugging and validation.
+	column 'Second Project Bid Rank For Debug'
+		dataType: int64
+		isHidden
+		formatString: #,0;(#,0)
+		lineageTag: 4980c46d-216b-476c-b6e9-f8c34d9b23eb
+		summarizeBy: sum
+		sourceColumn: Second Project Bid Rank For Debug
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor has county history relevant to the project.
+	column 'Has Focus Vendor County History Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 97a978b8-d2a4-44c7-a0f3-8db669a2a40f
+		summarizeBy: none
+		sourceColumn: Has Focus Vendor County History Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor has project classification history relevant to the project.
+	column 'Has Focus Vendor Project Classification History Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a5c07814-80da-42bc-aecf-4758b4102a45
+		summarizeBy: none
+		sourceColumn: Has Focus Vendor Project Classification History Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Historical lowest focus vendor bid amount for the same project classification context.
+	column 'Historical Low Focus Bid For Project Classification'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 8a7851c5-d60e-42c4-9a59-3b6aed6d3ee4
+		summarizeBy: sum
+		sourceColumn: Historical Low Focus Bid For Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Historical lowest focus vendor bid amount for the same county and project classification context.
+	column 'Historical Low Focus Bid For County Project Classification'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: f02278e8-22ca-4b6a-acca-7f99b6e2644b
+		summarizeBy: sum
+		sourceColumn: Historical Low Focus Bid For County Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indicator showing whether the project qualifies as an opportunity under model logic.
+	column 'Is Project Opportunity Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f6b52db-911b-4c57-bce3-b55ed55a6e63
+		summarizeBy: none
+		sourceColumn: Is Project Opportunity Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor participated in a project classified as an opportunity.
+	column 'Focus Vendor Participated Opportunity Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 89a025b9-0e16-4aec-92ed-c9eb415fff4c
+		summarizeBy: none
+		sourceColumn: Focus Vendor Participated Opportunity Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the focus vendor did not participate in a project classified as an opportunity.
+	column 'Focus Vendor Missed Opportunity Flag'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 21083dac-c898-4736-a62f-5890f9ace6d5
+		summarizeBy: none
+		sourceColumn: Focus Vendor Missed Opportunity Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min Engineer Project Total'
+		dataType: double
+		lineageTag: 317c9fbd-023a-4196-a6e2-0af1f674bd67
+		summarizeBy: sum
+		sourceColumn: Min Engineer Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Max Engineer Project Total'
+		dataType: double
+		lineageTag: a53cfe4d-671d-418b-a4c7-50cb2ee73c39
+		summarizeBy: sum
+		sourceColumn: Max Engineer Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Comparison Row Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: b38affdc-80f2-4de7-be3f-d9ba23a578b5
+		summarizeBy: sum
+		sourceColumn: Item Comparison Row Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Focus Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 45b5c71b-eec8-4952-b9f4-1d0aeb9437e6
+		summarizeBy: sum
+		sourceColumn: Focus Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Benchmark Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fa43db0-451a-41a5-a84e-b4db9d350ae0
+		summarizeBy: sum
+		sourceColumn: Benchmark Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimate Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 808f5e02-0760-47db-a206-b22aa46840c6
+		summarizeBy: sum
+		sourceColumn: Estimate Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Matched Focus Benchmark Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: b606a6c3-d195-4d57-97ad-f35c9207790f
+		summarizeBy: sum
+		sourceColumn: Matched Focus Benchmark Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Matched Focus Estimate Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e242027-d8ed-4b5c-a18e-5269cbd31f86
+		summarizeBy: sum
+		sourceColumn: Matched Focus Estimate Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Focus Item Amount Total'
+		dataType: double
+		lineageTag: 7fbf6be1-74e2-4f33-ae3e-58e5ba84d1cd
+		summarizeBy: sum
+		sourceColumn: Focus Item Amount Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Benchmark Item Amount Total'
+		dataType: double
+		lineageTag: c0502964-90fc-4e21-9d4c-ce7162492207
+		summarizeBy: sum
+		sourceColumn: Benchmark Item Amount Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimate Item Amount Total'
+		dataType: double
+		lineageTag: fa1b6c05-c5c2-4d1b-b123-20010298ad89
+		summarizeBy: sum
+		sourceColumn: Estimate Item Amount Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Benchmark Amount Sum'
+		dataType: double
+		lineageTag: efb53b47-159a-47e8-9f96-ff51804c6ee4
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark Amount Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Benchmark Amount Avg'
+		dataType: double
+		lineageTag: 90acec97-76a7-4b33-9290-6b981edd5903
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark Amount Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Benchmark ABS Amount Sum'
+		dataType: double
+		lineageTag: cb0d1cbf-69f6-443e-b9ad-5afbe9804f13
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark ABS Amount Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Benchmark ABS Amount Avg'
+		dataType: double
+		lineageTag: 1ffc734b-e3ff-4a14-bd42-eb3688d28a1f
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark ABS Amount Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Benchmark Ratio Avg'
+		dataType: double
+		lineageTag: 3fb1d2bd-255a-4fa2-83af-8f7232bde397
+		summarizeBy: sum
+		sourceColumn: Focus Vs Benchmark Ratio Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Overbid Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 568a8fd0-1636-4071-8920-785b6a0729bd
+		summarizeBy: sum
+		sourceColumn: Overbid Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Underbid Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 34f2c3e5-7e20-43fe-b2a7-e437125a3e13
+		summarizeBy: sum
+		sourceColumn: Underbid Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tie Item Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61b06617-b4ce-4932-9ca3-1f9e80ccaf4c
+		summarizeBy: sum
+		sourceColumn: Tie Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Focus Vs Estimate Amount Sum'
+		dataType: double
+		lineageTag: 980fcf99-e64b-481c-933c-6a05eb327037
+		summarizeBy: sum
+		sourceColumn: Focus Vs Estimate Amount Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Vs Estimate Amount Avg'
+		dataType: double
+		lineageTag: 8c88db32-388f-402a-a261-e0b8f0116b86
+		summarizeBy: sum
+		sourceColumn: Focus Vs Estimate Amount Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Overbid Item Pct'
+		dataType: double
+		lineageTag: 16180f4f-c674-4c81-8dc7-9d515657ab78
+		summarizeBy: sum
+		sourceColumn: Overbid Item Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Underbid Item Pct'
+		dataType: double
+		lineageTag: 554af0a3-41d6-433a-a9fa-51388e70ec94
+		summarizeBy: sum
+		sourceColumn: Underbid Item Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tie Item Pct'
+		dataType: double
+		lineageTag: 322d9779-f655-42fc-99db-75734452926c
+		summarizeBy: sum
+		sourceColumn: Tie Item Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Focus Item Rollup Vs Focus Bid Total Ratio'
+		dataType: double
+		lineageTag: 6e70b265-1505-4360-a1e9-0831e7a0bf39
+		summarizeBy: sum
+		sourceColumn: Focus Item Rollup Vs Focus Bid Total Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Benchmark Item Rollup Vs Benchmark Bid Total Ratio'
+		dataType: double
+		lineageTag: 1ff2bd8b-4a4f-49ff-a108-98ee334ef991
+		summarizeBy: sum
+		sourceColumn: Benchmark Item Rollup Vs Benchmark Bid Total Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimate Item Rollup Vs Estimate Total Ratio'
+		dataType: double
+		lineageTag: fad8630f-92e9-4d17-93f1-9ea9f0d546cd
+		summarizeBy: sum
+		sourceColumn: Estimate Item Rollup Vs Estimate Total Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Project Bid Role Comparison' = m
+		mode: import
+		source =
+				let
+				    View = "vw_fact_project_bid_role_comparison",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

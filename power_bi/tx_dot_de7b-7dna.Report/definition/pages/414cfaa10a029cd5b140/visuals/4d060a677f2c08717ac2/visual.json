@@ -1,0 +1,281 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "4d060a677f2c08717ac2",
+  "position": {
+    "x": 0,
+    "y": 346.90909090909093,
+    "z": 6000,
+    "height": 373.09090909090907,
+    "width": 618.18181818181813,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Project Classification"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Project Classification",
+              "nativeQueryRef": "Project Classification"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Contract Awards"
+                }
+              },
+              "queryRef": "_Measures.Total Contract Awards",
+              "nativeQueryRef": "Hits",
+              "displayName": "Hits"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Won"
+                }
+              },
+              "queryRef": "_Measures.Won",
+              "nativeQueryRef": "Won"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Lost"
+                }
+              },
+              "queryRef": "_Measures.Lost",
+              "nativeQueryRef": "Lost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Benchmark Vendor Contract Awards"
+                }
+              },
+              "queryRef": "_Measures.Benchmark Vendor Contract Awards",
+              "nativeQueryRef": "Misses",
+              "displayName": "Misses"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Underbid Exposure"
+                }
+              },
+              "queryRef": "_Measures.Underbid Exposure",
+              "nativeQueryRef": "Underbid Exposure"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Benchmark Vendor Contract Awards"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "274.2492488295716D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Project Bid Role Comparison.Project Classification"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hits & Misses'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8338264a7ec020dcaa7d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Project Classification"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bc759de452cf1908f337",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Contract Awards"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d26f29a18af76c18e472",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Won"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "625daffca408a31ea3bb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Lost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c459b4b64e8fc8b29c23",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Benchmark Vendor Contract Awards"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e72accc5c18883b4598d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Underbid Exposure"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

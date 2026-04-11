@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "3b7103ac8880e734222a",
+  "position": {
+    "x": 0,
+    "y": 5.2214452214452214,
+    "z": 1000,
+    "height": 100.69930069930071,
+    "width": 197.66899766899766,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project Bid Role Comparison"
+                    }
+                  },
+                  "Property": "Winner Bid Total Amount"
+                }
+              },
+              "queryRef": "Project Bid Role Comparison.Winner Bid Total Amount",
+              "nativeQueryRef": "Sum of Winner Bid Total Amount",
+              "active": true,
+              "format": "#,0"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Winner Bid Total Amount",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a0d966e88ede2bc92ca7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Project Bid Role Comparison"
+              }
+            },
+            "Property": "Winner Bid Total Amount"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

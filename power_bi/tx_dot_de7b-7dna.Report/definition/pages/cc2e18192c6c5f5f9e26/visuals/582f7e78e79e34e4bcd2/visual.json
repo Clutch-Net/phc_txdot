@@ -1,0 +1,416 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "582f7e78e79e34e4bcd2",
+  "position": {
+    "x": 0,
+    "y": 105.45454545454545,
+    "z": 0,
+    "height": 614.5454545454545,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Vendor"
+                    }
+                  },
+                  "Property": "Vendor Name"
+                }
+              },
+              "queryRef": "Vendor.Vendor Name",
+              "nativeQueryRef": "Vendor Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Bid - Won - Lost"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Bid - Won - Lost",
+              "nativeQueryRef": "B - W - L",
+              "displayName": "B - W - L"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Bid"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Bid",
+              "nativeQueryRef": "Bid",
+              "displayName": "Bid"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Won"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Won",
+              "nativeQueryRef": "Won",
+              "displayName": "Won"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Lost"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Lost",
+              "nativeQueryRef": "Lost",
+              "displayName": "Lost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Win Rate"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Win Rate",
+              "nativeQueryRef": "Win Rate",
+              "displayName": "Win Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Total Bids"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Total Bids",
+              "nativeQueryRef": "Total Bids",
+              "displayName": "Total Bids"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Total Contract Awards"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Total Contract Awards",
+              "nativeQueryRef": "Total Awards",
+              "displayName": "Total Awards"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Any Vendor Weighted Win Ratio"
+                }
+              },
+              "queryRef": "_Measures.Any Vendor Weighted Win Ratio",
+              "nativeQueryRef": "Wtg Win %",
+              "displayName": "Wtg Win %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Times Beat Vendor"
+                }
+              },
+              "queryRef": "_Measures.Times Beat Vendor",
+              "nativeQueryRef": "We Beat",
+              "displayName": "We Beat"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Times Lost to Vendor"
+                }
+              },
+              "queryRef": "_Measures.Times Lost to Vendor",
+              "nativeQueryRef": "We Lost",
+              "displayName": "We Lost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Vendor"
+                  }
+                },
+                "Property": "Vendor Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4d71ae371503c99c550a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Net Win Rate vs Vendor"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Measures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "_"
+                            }
+                          },
+                          "Property": "Net Win Rate vs Vendor"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "b0a4d10ac4f23d70165c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Vendor"
+              }
+            },
+            "Property": "Vendor Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "918ba410b3cbe9d7a117",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Bid - Won - Lost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bd73a8703aad4324545f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Bid"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b4f403c232dfcb38718e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Won"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1ad0e9c53693cf79388e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Lost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5ca8f3b02c10e5e85042",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Win Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6daf78c41467666664e2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Total Bids"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0985f55661484ebd6fed",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Total Contract Awards"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "168778ff15901415e194",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Any Vendor Weighted Win Ratio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c42d702374ce9f25d203",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Times Beat Vendor"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6757cf9398e5f0675789",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Times Lost to Vendor"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

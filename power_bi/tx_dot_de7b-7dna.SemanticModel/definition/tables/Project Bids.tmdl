@@ -1,0 +1,606 @@
+/// Project-plus-vendor fact table containing vendor-level bid results for each project. Used for bidder participation, rank, spread, project-level bid totals, and vendor bid diagnostics.
+table 'Project Bids'
+	lineageTag: fda8afe8-e753-4333-926d-6e50fba6b6c5
+
+	/// Technical key for the project bid fact row. Used internally for row identity and hidden from report users.
+	column 'Bid Project Fact Key'
+		dataType: string
+		isHidden
+		lineageTag: 7580ca60-c38f-43cd-a36e-ed5a85b33265
+		summarizeBy: none
+		sourceColumn: Bid Project Fact Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Project dimension. Hidden so users filter through the Project table instead.
+	column 'Project Key'
+		dataType: string
+		isHidden
+		lineageTag: 5a8f448e-0cd2-4f26-9939-d09624c04c43
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Vendor dimension. Hidden so users filter through the Vendor table instead.
+	column 'Vendor Key'
+		dataType: string
+		isHidden
+		lineageTag: 09c5e74a-f176-4e8d-a0ff-8998ff74dadc
+		summarizeBy: none
+		sourceColumn: Vendor Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Project Classification dimension. Hidden so users filter through the Project Classification table instead.
+	column 'Project Classification Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 377054e6-d87d-4817-8f35-621fdc381132
+		summarizeBy: none
+		sourceColumn: Project Classification Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the County dimension. Hidden so users filter through the County table instead.
+	column 'County Key'
+		dataType: int64
+		isHidden
+		formatString: 0;(0)
+		lineageTag: 09623342-3e2b-40b2-9dc9-d50670187414
+		summarizeBy: none
+		sourceColumn: County Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business project identifier associated with the vendor bid row.
+	column 'Project ID'
+		dataType: string
+		lineageTag: 8651a073-b971-4c9a-a93c-b5423452aceb
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Vendor name carried on the fact row for convenience and auditability. Hidden so users use the Vendor dimension instead.
+	column 'Vendor Name'
+		dataType: string
+		isHidden
+		lineageTag: ec8dc580-4a8f-4614-a0ab-caee57623170
+		summarizeBy: none
+		sourceColumn: Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized vendor name carried on the fact row. Hidden so users use the Vendor dimension instead.
+	column 'Vendor Name Standardized'
+		dataType: string
+		isHidden
+		lineageTag: 94d06001-06e1-4557-8d21-582993789b80
+		summarizeBy: none
+		sourceColumn: Vendor Name Standardized
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project name carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Name'
+		dataType: string
+		isHidden
+		lineageTag: f08c234d-e7ac-42c2-9748-86a4839cd82f
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Number'
+		dataType: string
+		isHidden
+		lineageTag: dbf41ac8-0f6d-446a-ba08-d1095e9f4b7e
+		summarizeBy: none
+		sourceColumn: Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'State Project Number'
+		dataType: string
+		isHidden
+		lineageTag: 99aaba2f-ce83-4575-8c50-f9b60f5550e7
+		summarizeBy: none
+		sourceColumn: State Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Control-Section-Job identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Control Section Job CSJ'
+		dataType: string
+		isHidden
+		lineageTag: fdd3bfa0-31df-4590-97b2-f2cf556eea71
+		summarizeBy: none
+		sourceColumn: Control Section Job CSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Controlling project identifier carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Controlling Project ID CCSJ'
+		dataType: string
+		isHidden
+		lineageTag: bfa0e595-8137-442d-9fb4-5ac4b688409b
+		summarizeBy: none
+		sourceColumn: Controlling Project ID CCSJ
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project type carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Type'
+		dataType: string
+		isHidden
+		lineageTag: ecc5af78-1cbd-4e20-9d0b-1fbd9690ac15
+		summarizeBy: none
+		sourceColumn: Project Type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Project classification carried on the fact row for convenience. Hidden so users use the Project Classification dimension instead.
+	column 'Project Classification'
+		dataType: string
+		isHidden
+		lineageTag: 2c5c65dd-2807-4f7c-8762-cdc463a712e8
+		summarizeBy: none
+		sourceColumn: Project Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Actual Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: beb7d19b-2749-45b3-89c3-81d187b045fc
+		summarizeBy: none
+		sourceColumn: Project Actual Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Estimated let date carried on the fact row for convenience. Hidden so users use the Calendar and Project dimensions instead.
+	column 'Project Estimated Let Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 50f58846-728f-4032-a63e-75ca8cf961c1
+		summarizeBy: none
+		sourceColumn: Project Estimated Let Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Starting project limits carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Limits From'
+		dataType: string
+		isHidden
+		lineageTag: f84a4588-4a5f-4284-8423-258bb156f142
+		summarizeBy: none
+		sourceColumn: Project Limits From
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Ending project limits carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Project Limits To'
+		dataType: string
+		isHidden
+		lineageTag: 4fe1e0b0-e910-4ccf-8c06-db2db05f0d3c
+		summarizeBy: none
+		sourceColumn: Project Limits To
+
+		annotation SummarizationSetBy = Automatic
+
+	/// County label carried on the fact row for convenience. Hidden so users use the County dimension instead.
+	column County
+		dataType: string
+		isHidden
+		lineageTag: 707a92d4-69ef-46dd-9296-e45f36599746
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formatted location label carried on the fact row for convenience. Hidden so users use the County and Project dimensions instead.
+	column Location
+		dataType: string
+		isHidden
+		lineageTag: 62970664-65bd-414c-8438-427c938e02fb
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	/// District or division carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'District Division'
+		dataType: string
+		isHidden
+		lineageTag: ba8e8ff1-cb26-417c-a02e-0bd2a95884d9
+		summarizeBy: none
+		sourceColumn: District Division
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Highway carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column Highway
+		dataType: string
+		isHidden
+		lineageTag: b4a0cb16-57db-47e9-a8c8-c423903e5c99
+		summarizeBy: none
+		sourceColumn: Highway
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short project description carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Short Description'
+		dataType: string
+		isHidden
+		lineageTag: f65af611-0094-430e-a22b-74c878489a84
+		summarizeBy: none
+		sourceColumn: Short Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Federal project number carried on the fact row for convenience. Hidden so users use the Project dimension instead.
+	column 'Federal Project Number'
+		dataType: string
+		isHidden
+		lineageTag: 3e48ddcf-9af2-4ca5-a3ee-c052a0391570
+		summarizeBy: none
+		sourceColumn: Federal Project Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of bid item rows associated with the vendor's project bid.
+	column 'Bid Item Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 351e7858-efed-43a6-afa3-99834d2309c8
+		summarizeBy: sum
+		sourceColumn: Bid Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of distinct item specifications included in the vendor's project bid.
+	column 'Distinct Item Specification Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 714a714e-43cb-455a-8b47-4eb63b6f98ef
+		summarizeBy: sum
+		sourceColumn: Distinct Item Specification Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of distinct bid item sequence numbers included in the vendor's project bid.
+	column 'Distinct Bid Item Sequence Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 531ea980-1671-4d57-9dcb-0e6e81f5c007
+		summarizeBy: sum
+		sourceColumn: Distinct Bid Item Sequence Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of distinct submit sequence versions associated with the vendor's project bid.
+	column 'Distinct Submit Sequence Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 21b5c416-dc96-44cd-b23e-1ec958a4d070
+		summarizeBy: sum
+		sourceColumn: Distinct Submit Sequence Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total quantity summed across the vendor's bid items for the project.
+	column 'Total Bid Item Quantity'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 68a5101b-29c3-4dc7-9d2c-d6470de50b5a
+		summarizeBy: sum
+		sourceColumn: Total Bid Item Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total extended amount summed from the vendor's bid items for the project.
+	column 'Bid Item Extended Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: d67563b5-855e-4e9f-bb11-39222b651f97
+		summarizeBy: sum
+		sourceColumn: Bid Item Extended Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Minimum observed bid total amount for the vendor-project row across source rollups or diagnostics.
+	column 'Min Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: dcaf00f4-c99f-4670-b093-ef643440bd73
+		summarizeBy: sum
+		sourceColumn: Min Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Maximum observed bid total amount for the vendor-project row across source rollups or diagnostics.
+	column 'Max Bid Total Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: ea1a5f45-0f00-475a-9770-970a7edd8e92
+		summarizeBy: sum
+		sourceColumn: Max Bid Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indicator showing whether conflicting project bid totals were observed for the vendor-project row.
+	column 'Has Conflicting Bid Total Amounts'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d4438670-d42a-45b4-93f3-ecb42c7cbf9b
+		summarizeBy: none
+		sourceColumn: Has Conflicting Bid Total Amounts
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Absolute difference between the vendor's project bid total and the item-level rollup total.
+	column 'Bid Total Vs Item Rollup Abs Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: f585785d-9c81-4839-bd30-8f883111bd4a
+		summarizeBy: sum
+		sourceColumn: Bid Total Vs Item Rollup Abs Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Minimum bid rank sequence number observed for the vendor-project row.
+	column 'Min Bid Rank Sequence Number'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: dd2941ce-7679-4b96-9bca-5412bd4f344b
+		summarizeBy: sum
+		sourceColumn: Min Bid Rank Sequence Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Maximum bid rank sequence number observed for the vendor-project row.
+	column 'Max Bid Rank Sequence Number'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 8b4c32ec-eb7f-4295-88fa-b6a106859cb9
+		summarizeBy: sum
+		sourceColumn: Max Bid Rank Sequence Number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether any item rows associated with the vendor-project row were marked as low bidder items.
+	column 'Has Any Low Bidder Items'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 37b1c102-e4cf-4cda-87fd-b93f9d8fc35e
+		summarizeBy: none
+		sourceColumn: Has Any Low Bidder Items
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the vendor was the low bidder for the project.
+	column 'Is Low Bidder'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2e6fbb50-d732-44f0-8393-b7b26aa0bae3
+		summarizeBy: none
+		sourceColumn: Is Low Bidder
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of payment adjustment items associated with the vendor-project row.
+	column 'Payment Adjustment Item Count'
+		dataType: int64
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 6a2aa436-d9ed-407f-a726-ff50a63e0c4b
+		summarizeBy: sum
+		sourceColumn: Payment Adjustment Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Count of special deduction items associated with the vendor-project row.
+	column 'Special Deduction Item Count'
+		dataType: int64
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 42c52cf0-bbe1-4e11-8098-3c171d38816d
+		summarizeBy: sum
+		sourceColumn: Special Deduction Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Count of nonstandard adjustment items associated with the vendor-project row.
+	column 'Nonstandard Adjustment Item Count'
+		dataType: int64
+		formatString: #,0.00;(#,0.00)
+		lineageTag: d705b057-77b3-4135-b674-784a3316f000
+		summarizeBy: sum
+		sourceColumn: Nonstandard Adjustment Item Count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indicator showing whether the vendor-project row has submit history across multiple submission versions.
+	column 'Vendor Project Has Resubmission History'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e2ffa491-1f7d-45cf-8470-3292f57d575a
+		summarizeBy: none
+		sourceColumn: Vendor Project Has Resubmission History
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether any item in the vendor-project row has resubmission history.
+	column 'Any Item Has Resubmission History'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5176b0a7-05bf-4115-8983-ae75058a977d
+		summarizeBy: none
+		sourceColumn: Any Item Has Resubmission History
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether any item changed across submission versions for the vendor-project row.
+	column 'Any Item Changed Across Submit Sequences'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a779c7ce-8ac9-4cd7-a2ff-c5d9a4d6f44b
+		summarizeBy: none
+		sourceColumn: Any Item Changed Across Submit Sequences
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether any prior item is missing from the vendor's latest project submission.
+	column 'Any Item Missing From Latest Project Submit'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b018e5ac-37b6-48f4-abef-a09721f19790
+		summarizeBy: none
+		sourceColumn: Any Item Missing From Latest Project Submit
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether any item value changed across submission versions for the vendor-project row.
+	column 'Any Item Changed Value Across Submits'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 833a39c9-aa0b-4d3e-a67d-cbfbcb84884d
+		summarizeBy: none
+		sourceColumn: Any Item Changed Value Across Submits
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rank of the vendor's project bid within the project, where lower values indicate more competitive bids.
+	column 'Project Bid Rank'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 83e37cc7-52d2-4a04-851c-a2d1f1c38a1e
+		summarizeBy: sum
+		sourceColumn: Project Bid Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of bidders participating in the project.
+	column 'Bidder Count In Project'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: d1e9b37f-1220-455a-a903-7ef2b8c634a3
+		summarizeBy: sum
+		sourceColumn: Bidder Count In Project
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Lowest total bid amount submitted for the project.
+	column 'Lowest Bid Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 1ed5578e-f316-424d-988e-671fd025af14
+		summarizeBy: sum
+		sourceColumn: Lowest Bid Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Highest total bid amount submitted for the project.
+	column 'Highest Bid Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 8346a3d8-915c-49e2-aa03-17fe5c7154bf
+		summarizeBy: sum
+		sourceColumn: Highest Bid Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference between the highest and lowest bid amounts submitted for the project.
+	column 'Bid Spread Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 1311c4dc-11a7-46c6-839a-3eea4c82a5ba
+		summarizeBy: sum
+		sourceColumn: Bid Spread Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio of the vendor's bid total to the project's lowest bid total.
+	column 'Bid Vs Low Bid Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 3aa98877-0bcf-4e16-aa13-b300ac9e1139
+		summarizeBy: sum
+		sourceColumn: Bid Vs Low Bid Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Most recent source-system update date associated with the vendor-project row.
+	column 'Latest Source Updated At'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: c3ef9317-ad45-44be-9365-a69db82897de
+		summarizeBy: none
+		sourceColumn: Latest Source Updated At
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Most recent model-load date associated with the vendor-project row.
+	column 'Latest Load Timestamp'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: ed3e59fd-7cf5-4f47-a22f-44e408bfdbd5
+		summarizeBy: none
+		sourceColumn: Latest Load Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Project Bids' = m
+		mode: import
+		source =
+				let
+				    View = "vw_fact_project_bid",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

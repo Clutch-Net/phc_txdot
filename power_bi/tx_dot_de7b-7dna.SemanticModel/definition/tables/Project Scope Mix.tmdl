@@ -1,0 +1,297 @@
+/// Project-plus-work-category fact table summarizing estimate-side and winning-bid-side scope mix. Used to analyze how project value is distributed by work category and how winning scope mix differs from estimate mix.
+table 'Project Scope Mix'
+	lineageTag: b06079a2-06b2-401b-8286-daa9892e99bc
+
+	/// Technical key for the project scope mix fact row. Used for row identity and hidden from report users.
+	column 'Project Scope Mix Key'
+		dataType: string
+		isHidden
+		lineageTag: 01c4f82d-8a43-44e8-b2fc-b9e18c5f4bc2
+		summarizeBy: none
+		sourceColumn: Project Scope Mix Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Project dimension. Hidden so users filter through the Project table instead.
+	column 'Project Key'
+		dataType: string
+		isHidden
+		lineageTag: de0c3189-873e-487b-9e53-3e4d7339a86b
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical key linking the fact row to the Work Category dimension. Hidden so users filter through the Work Category table instead.
+	column 'Item Work Category Key'
+		dataType: string
+		isHidden
+		lineageTag: f8778763-40d2-4e8e-9f4d-4d854a8e760b
+		summarizeBy: none
+		sourceColumn: Item Work Category Key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business project identifier associated with the project scope mix row.
+	column 'Project ID'
+		dataType: string
+		lineageTag: e93bf545-8327-4fe3-a1c2-0ec79562cb6d
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Standardized work category represented by the project scope mix row. Hidden so users use the Work Category dimension instead.
+	column 'Item Work Category'
+		dataType: string
+		isHidden
+		lineageTag: efdef0db-19d2-4d4c-a341-368bfe04bbdd
+		summarizeBy: none
+		sourceColumn: Item Work Category
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of estimate item rows contributing to the project and work category combination.
+	column 'Estimate Item Row Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 27b4640f-045c-4d8d-aa51-b0baeded999c
+		summarizeBy: sum
+		sourceColumn: Estimate Item Row Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of distinct specifications contributing to the estimate side of the project and work category combination.
+	column 'Estimate Distinct Spec Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 697df338-bff3-47c4-acca-87db2621e382
+		summarizeBy: sum
+		sourceColumn: Estimate Distinct Spec Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total engineer estimate amount allocated to the work category for the project.
+	column 'Estimate Category Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 45e34d35-0836-4623-81a6-13ea872f4608
+		summarizeBy: sum
+		sourceColumn: Estimate Category Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total estimate item-rollup amount across all work categories for the project.
+	column 'Estimate Item Rollup Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: a7c7917c-2238-401a-be9d-40faa4842ede
+		summarizeBy: sum
+		sourceColumn: Estimate Item Rollup Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Project-level engineer estimate total used as the primary estimate denominator.
+	column 'Project Engineer Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: f0f1df54-35c5-4bdf-8ea1-28dc102a4de1
+		summarizeBy: sum
+		sourceColumn: Project Engineer Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Source used to derive the project engineer total value.
+	column 'Engineer Project Total Source'
+		dataType: string
+		lineageTag: b9ede220-48ab-4412-a895-b9b1ca34e942
+		summarizeBy: none
+		sourceColumn: Engineer Project Total Source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Share of the project engineer estimate total allocated to the work category.
+	column 'Estimate Category Pct Of Project Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 3389639a-a51f-4362-9fd3-079054cbb646
+		summarizeBy: sum
+		sourceColumn: Estimate Category Pct Of Project Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Share of the estimate item-rollup total allocated to the work category.
+	column 'Estimate Category Pct Of Item Rollup Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: a6690f7c-1da0-4065-8840-a9ae43aacc7d
+		summarizeBy: sum
+		sourceColumn: Estimate Category Pct Of Item Rollup Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Count of winning-bid item rows contributing to the project and work category combination.
+	column 'Winning Bid Item Row Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: c991ad30-55e3-4987-a267-dcaf0d0f7e55
+		summarizeBy: sum
+		sourceColumn: Winning Bid Item Row Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Count of distinct specifications contributing to the winning-bid side of the project and work category combination.
+	column 'Winning Bid Distinct Spec Count'
+		dataType: int64
+		formatString: #,0;(#,0)
+		lineageTag: 80565958-fe87-4fb8-8e77-59d0856aae9d
+		summarizeBy: sum
+		sourceColumn: Winning Bid Distinct Spec Count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total winning-bid amount allocated to the work category for the project.
+	column 'Winning Bid Category Amount'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: de70b51e-fa84-47de-8fc9-ac75c15067ec
+		summarizeBy: sum
+		sourceColumn: Winning Bid Category Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total winning-bid item-rollup amount across all work categories for the project.
+	column 'Winning Bid Item Rollup Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 561842b2-7494-4788-9f97-cc4150a28d49
+		summarizeBy: sum
+		sourceColumn: Winning Bid Item Rollup Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Lowest total bid amount for the project, used as the winning-bid project-level denominator.
+	column 'Lowest Bid Amount In Project'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 04c1ccac-e49a-430e-b586-e05073a78d90
+		summarizeBy: sum
+		sourceColumn: Lowest Bid Amount In Project
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Share of the project's lowest bid total allocated to the work category.
+	column 'Winning Bid Category Pct Of Low Bid Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 34ea010b-c309-4e8d-8a70-c79492ccfbd5
+		summarizeBy: sum
+		sourceColumn: Winning Bid Category Pct Of Low Bid Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Share of the winning-bid item-rollup total allocated to the work category.
+	column 'Winning Bid Category Pct Of Item Rollup Total'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 06413960-a741-4153-8b5e-c18ddc81b9f6
+		summarizeBy: sum
+		sourceColumn: Winning Bid Category Pct Of Item Rollup Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Difference between the winning-bid category amount and the estimate category amount for the work category.
+	column 'Winning Bid Vs Estimate Category Amount Diff'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 6aa7f106-2041-4a46-8f4f-5bf4e7896eac
+		summarizeBy: sum
+		sourceColumn: Winning Bid Vs Estimate Category Amount Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Ratio comparing the winning-bid category amount to the estimate category amount for the work category.
+	column 'Winning Bid Vs Estimate Category Amount Ratio'
+		dataType: double
+		formatString: #,0.00;(#,0.00)
+		lineageTag: 29782e3e-8bb1-4bb3-9058-ef4dd913ebf0
+		summarizeBy: sum
+		sourceColumn: Winning Bid Vs Estimate Category Amount Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indicator showing whether the work category is present on both the estimate side and the winning-bid side.
+	column 'Category Present In Both Estimate And Winning Bid'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a3309630-5911-4a4b-84da-262bf5686d34
+		summarizeBy: none
+		sourceColumn: Category Present In Both Estimate And Winning Bid
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the work category is present only on the estimate side.
+	column 'Category Estimate Only'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 30ceb454-dfa2-417b-849a-7db2756436d1
+		summarizeBy: none
+		sourceColumn: Category Estimate Only
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicator showing whether the work category is present only on the winning-bid side.
+	column 'Category Winning Bid Only'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ff296a1b-77c6-4352-9894-e77cf09a3992
+		summarizeBy: none
+		sourceColumn: Category Winning Bid Only
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Project Scope Mix' = m
+		mode: import
+		source =
+				let
+				    View = "vw_fact_project_scope_mix",
+				    Host = #"Host",
+				    Path = #"Path",
+				    Catalog = #"Catalog",
+				    Database = #"Database",
+				    Limit = #"LimitData",
+				    Source = Databricks.Catalogs(Host, Path, [Catalog = Catalog, Database = Database]),
+				    /* Source = DuckDB.Contents(Host, Path, null, null, null, []), */
+				    Data = Source{[Item=View,Schema=Database,Catalog=Catalog]}[Data],
+				    ConditionalTopRows = if Limit then Table.FirstN(Data, 1000) else Data
+				in
+				    ConditionalTopRows
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
